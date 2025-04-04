@@ -1,0 +1,53 @@
+<div id="shopping-list-screen" class="max-w-7xl mx-auto px-6 py-8">
+    <h1 class="text-2xl font-semibold mb-6">Shopping List</h1>
+    <div class="bg-white rounded-lg shadow-sm p-6 grid md:grid-cols-2 gap-8">
+        <!-- Input Section -->
+        <div class="flex items-center justify-between mb-6 md:col-span-2">
+            <input type="text" placeholder="Add item..." [(ngModel)]="newItemName"
+                class="w-full mr-4 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent shadow-sm" />
+
+            <div class="flex items-center">
+                <input type="text" placeholder="Qty & Unit" [(ngModel)]="newItemQty"
+                    class="w-24 mr-2 p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent shadow-sm" />
+                <button class="bg-custom text-white px-4 py-2 rounded-lg hover:bg-custom/90"
+                    (click)="addItem()">Add</button>
+            </div>
+        </div>
+        <!-- To Buy List -->
+        <div class="space-y-4 bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-medium text-lg mb-4">To Buy</h3>
+            <div *ngFor="let item of toBuyList"
+                class="flex items-center justify-between p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                <div class="flex items-center">
+                    <input type="checkbox" class="mr-3 h-5 w-5 text-custom rounded focus:ring-custom"
+                        (change)="toggleItem(item, 'toBuy')" />
+                    <span>{{ item.emoji }} {{ item.name }}</span>
+                    <span class="ml-2 text-gray-500">({{ item.qty }})</span>
+                </div>
+                <button class="text-gray-400 hover:text-red-500" (click)="removeItem(item, 'toBuy')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bought Items List -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-medium text-lg mb-4">Bought Items</h3>
+            <div class="space-y-4">
+                <div *ngFor="let item of boughtList"
+                    class="flex items-center justify-between p-3 bg-white/50 rounded-lg transition-colors duration-200">
+                    <div class="flex items-center">
+                        <input type="checkbox" checked class="mr-3 h-5 w-5 text-custom rounded focus:ring-custom"
+                            (change)="toggleItem(item, 'bought')" />
+                        <span class="line-through">{{ item.emoji }} {{ item.name }}</span>
+                        <span class="ml-2 text-gray-500">({{ item.qty }})</span>
+                    </div>
+                    <button class="text-gray-400 hover:text-red-500" (click)="removeItem(item, 'bought')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

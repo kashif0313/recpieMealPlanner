@@ -1,0 +1,38 @@
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <h1 class="text-2xl font-semibold mb-6">My Recipes</h1>
+    <div class="flex justify-between items-center mb-6">
+        <!-- <div class="flex space-x-4">
+            <button class="bg-black text-white px-4 py-2 rounded-lg" (click)="filterListing('All')">All Recipes</button>
+            <button class="text-gray-600 hover:text-black px-4 py-2"
+                (click)="filterListing('Breakfast')">Breakfast</button>
+            <button class="text-gray-600 hover:text-black px-4 py-2" (click)="filterListing('Lunch')">Lunch</button>
+            <button class="text-gray-600 hover:text-black px-4 py-2" (click)="filterListing('Dinner')">Dinner</button>
+        </div> -->
+        <div class="flex space-x-4">
+            <button *ngFor="let category of categories" (click)="filterListing(category)"
+                [ngClass]="{'bg-black text-white': selectedCategory === category, 'text-gray-600 hover:text-black': selectedCategory !== category}"
+                class="px-4 py-2 rounded-lg">
+                {{ category }}
+            </button>
+        </div>
+        <div class="flex space-x-4"><button class="border border-gray-200 p-2 rounded-lg" (click)="changeGridView()"><i
+                    class="fas fa-th-large text-gray-600"></i></button><button (click)="changeListingView()"
+                class="border border-gray-200 p-2 rounded-lg"><i class="fas fa-list text-gray-600"></i>
+            </button></div>
+    </div>
+    <div>
+        <div *ngIf="recipes.length > 0; else noRecipes">
+            <div *ngIf="gridView" class="flex  gap-6">
+                <app-meal-card *ngFor="let recipe of filteredRecipes; let i = index"
+                    [mealData]="recipe"></app-meal-card>
+            </div>
+            <div *ngIf="!gridView">
+                <app-meal-list class="flex my-3 " *ngFor="let recipe of filteredRecipes; let i = index"
+                    [mealData]="recipe"></app-meal-list>
+            </div>
+        </div>
+        <ng-template #noRecipes>
+            <p class="text-gray-500">No recipes found. Please add a recipe first!</p>
+        </ng-template>
+    </div>
+</div>

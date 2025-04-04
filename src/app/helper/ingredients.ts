@@ -1,0 +1,57 @@
+export type IngredientName = keyof typeof nutrientDatabase;
+
+export interface NutrientValues {
+  calories: number;
+  protein: number;
+  fat: number;
+  carbs: number;
+}
+export const nutrientDatabase = {
+  egg: { calories: 155, protein: 13, fat: 11, carbs: 1 },
+  milk: { calories: 42, protein: 3.4, fat: 1, carbs: 5 },
+  cheese: { calories: 402, protein: 25, fat: 33, carbs: 1.3 },
+  butter: { calories: 717, protein: 0.9, fat: 81, carbs: 0.1 },
+  yogurt: { calories: 59, protein: 10, fat: 0.4, carbs: 3.6 },
+  chicken_breast: { calories: 165, protein: 31, fat: 3.6, carbs: 0 },
+  chicken_thigh: { calories: 209, protein: 26, fat: 10.9, carbs: 0 },
+  beef: { calories: 250, protein: 26, fat: 17, carbs: 0 },
+  pork: { calories: 242, protein: 26, fat: 14, carbs: 0 },
+  salmon: { calories: 208, protein: 20, fat: 13, carbs: 0 },
+  shrimp: { calories: 99, protein: 24, fat: 0.3, carbs: 0.2 },
+  tuna: { calories: 130, protein: 29, fat: 1.3, carbs: 0 },
+  turkey: { calories: 189, protein: 28, fat: 7, carbs: 0 },
+  rice_white: { calories: 130, protein: 2.7, fat: 0.3, carbs: 28 },
+  rice_brown: { calories: 111, protein: 2.6, fat: 0.9, carbs: 23 },
+  bread: { calories: 265, protein: 9, fat: 3.2, carbs: 49 },
+  pasta: { calories: 157, protein: 5.8, fat: 0.9, carbs: 30 },
+  oats: { calories: 389, protein: 17, fat: 7, carbs: 66 },
+  quinoa: { calories: 120, protein: 4.1, fat: 1.9, carbs: 21 },
+  lettuce: { calories: 15, protein: 1.4, fat: 0.2, carbs: 2.9 },
+  tomato: { calories: 18, protein: 0.9, fat: 0.2, carbs: 3.9 },
+  carrot: { calories: 41, protein: 0.9, fat: 0.2, carbs: 10 },
+  potato: { calories: 77, protein: 2, fat: 0.1, carbs: 17 },
+  onion: { calories: 40, protein: 1.1, fat: 0.1, carbs: 9.3 },
+  broccoli: { calories: 55, protein: 3.7, fat: 0.6, carbs: 11 },
+  spinach: { calories: 23, protein: 2.9, fat: 0.4, carbs: 3.6 },
+  bell_pepper: { calories: 31, protein: 1, fat: 0.3, carbs: 6 },
+  banana: { calories: 89, protein: 1.1, fat: 0.3, carbs: 23 },
+  apple: { calories: 52, protein: 0.3, fat: 0.2, carbs: 14 },
+  orange: { calories: 47, protein: 0.9, fat: 0.1, carbs: 12 },
+  strawberry: { calories: 32, protein: 0.7, fat: 0.3, carbs: 7.7 },
+  mango: { calories: 60, protein: 0.8, fat: 0.4, carbs: 15 },
+  pineapple: { calories: 50, protein: 0.5, fat: 0.1, carbs: 13 },
+  almonds: { calories: 579, protein: 21, fat: 50, carbs: 22 },
+  peanuts: { calories: 567, protein: 25, fat: 49, carbs: 16 },
+  cashews: { calories: 553, protein: 18, fat: 44, carbs: 30 },
+  chia_seeds: { calories: 486, protein: 16, fat: 31, carbs: 42 },
+  flaxseeds: { calories: 534, protein: 18, fat: 42, carbs: 29 },
+  walnuts: { calories: 654, protein: 15, fat: 65, carbs: 14 },
+  lentils: { calories: 116, protein: 9, fat: 0.4, carbs: 20 },
+  chickpeas: { calories: 164, protein: 8.9, fat: 2.6, carbs: 27 },
+  black_beans: { calories: 132, protein: 8.9, fat: 0.5, carbs: 23 },
+  kidney_beans: { calories: 127, protein: 8.7, fat: 0.5, carbs: 22 },
+  olive_oil: { calories: 884, protein: 0, fat: 100, carbs: 0 },
+  canola_oil: { calories: 884, protein: 0, fat: 100, carbs: 0 },
+  mayonnaise: { calories: 680, protein: 1, fat: 75, carbs: 0.6 },
+  honey: { calories: 304, protein: 0.3, fat: 0, carbs: 82 },
+} as const;
