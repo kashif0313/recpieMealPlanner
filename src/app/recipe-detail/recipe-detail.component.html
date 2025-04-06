@@ -1,5 +1,5 @@
 <div class="max-w-7xl mx-auto px-6 py-8">
-    <h1 class="text-2xl font-semibold mb-6">Popular Recipes</h1>
+    <h1 class="text-2xl font-semibold mb-6">Recipe Details</h1>
     <div class="grid grid-cols-1 gap-6 max-w-5xl mx-auto">
         <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
             <div class="p-6 flex-1 flex flex-col">
@@ -35,13 +35,7 @@
                             <ul class="list-disc pl-5 space-y-2 text-gray-600"
                                 *ngFor="let ingredient of selectedRecipe.ingredients; let i = index">
                                 <li>{{ingredient.name}} ({{ingredient.qty }} / {{ingredient.unit}} ) </li>
-                                <!-- <li>Cherry tomatoes</li>
-                                <li>Cucumber</li>
-                                <li>Red onion</li>
-                                <li>Kalamata olives</li>
-                                <li>Feta cheese</li>
-                                <li>Extra virgin olive oil</li>
-                                <li>Balsamic vinegar</li> -->
+
                             </ul>
                         </div>
                     </div>
@@ -63,122 +57,5 @@
         </div>
     </div>
 
-    <h2 class="text-2xl font-semibold mt-12 mb-6">Recent Meal Plans</h2>
-    <div class="bg-white rounded-xl shadow-sm p-4 md:p-6">
-        <div class="flex items-center justify-between mb-6">
-            <h3 class="font-medium">This Week&#39;s Plan</h3>
-            <button
-                class="!rounded-button text-custom border-2 border-custom px-6 py-2.5 rounded-lg hover:bg-gradient-to-r hover:from-custom hover:to-custom/80 hover:text-white transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-md">
-                Edit Plan
-            </button>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Mon</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a quinoa bowl with roasted vegetables on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=e34a6b43-43f4-474d-bff6-6a14c735c80b&flag=121d7f24-4cca-47b7-8ef2-f55238e49034&flag=be1dff51-ada0-4b2c-abfc-a085e7a5d8c4&flag=e1c44ae9-8831-48f3-9fe0-be955a251748&flag=fe9f10dc-3dd8-45bb-90a4-97bc8dc39f82&flag=d23a8ea1-01fd-467e-b558-0ce88a90ab3a&flag=540a8dc7-b9f7-4e36-90c5-ac9e3e986ca3&flag=792fbf48-a0d4-419a-a5cf-e29e01c775fe&flag=9777199e-b752-4423-9494-e35ca6351bf2&flag=67e4f18e-bfe2-4375-a330-7156295fae46&flag=18cf76d2-8c24-4fe9-a6ff-006d1c93a580&flag=a2bc4202-2747-4f0a-9adc-3e5cdeb15ad6&flag=fd5ba409-43d5-4f17-a58c-aed51bca957d&flag=bfd63198-4885-4f22-bd40-ee18d859ccce&flag=c067e8d6-bcdf-4098-9e0b-c5a701654cab&flag=8adb628c-531f-4df4-84f5-1eebf8a9dffa&flag=5faafa09-0c45-4f02-a20f-c9cd1f11fabb&flag=2080fc0e-e6cf-4a88-a774-f39b21e456ff&flag=43c2f6fd-b4df-4124-9d5d-34fafd9fd4a3"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Monday Meal" />
-                    <span class="text-sm">Quinoa Bowl</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Tue</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a salmon fillet with asparagus on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=3149cc9a-72c5-4035-9bf6-fc1332cdda81&flag=b87ff116-813c-45cc-8134-4e6c50b29539&flag=dc356240-6227-413d-885a-4862a68360e2&flag=48f84fba-34a9-4d18-91b8-eda24b576634&flag=b99475b8-4cb4-4893-80bf-82093e395678&flag=ba178dc4-e981-40e3-9894-6197d0510792&flag=940690ec-fc19-4e62-bef2-4bf6dbe95113&flag=e034670b-688e-4c06-8d1c-d948107dd26b&flag=f06c0d40-7743-47cb-ac8c-5f783ed538de&flag=d116cf99-7d70-408b-8f98-ecce3a23cecc&flag=9cc97f84-7742-4e27-ad6a-86f114fb84a9&flag=46e3ac7a-4eb3-490d-8998-a0769226ce33&flag=44c3d391-f30d-473d-b786-db2f70a9a38f&flag=7304c39d-9364-4fc5-98e3-3f5ccb9c11f4&flag=540a3488-821e-4dc9-938f-af2d8dc17d37&flag=64db28d5-bf56-47cc-80e5-fd359d29da9f&flag=125a29bd-69bb-477e-b64e-ad685c4ada88&flag=9ee497f1-9bf5-455c-9f7f-a9886480c870&flag=dd0009b3-3094-4c68-94ea-7b8672e43f24"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Tuesday Meal" />
-                    <span class="text-sm">Salmon</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Wed</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a vegetarian pasta dish with tomato sauce on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=75ee4bdd-b758-404f-b2f0-5e05c569a5a9&flag=95269c3a-e341-4d6c-9cd9-0d82c35db51d&flag=92f76e3b-b027-4ce6-9bc9-b2f1ea76c380&flag=1b2139fd-f565-4ec0-a4c0-ffc4b1c2b156&flag=d9baff24-9536-4a8f-ace1-4d439a93dd65&flag=a273d4b7-7091-4583-a198-83d030d3c0b2&flag=e4b03765-ce2d-4363-bf69-a391de5c92de&flag=41d7a1df-3f1d-41f3-a89a-5061142a7bfa&flag=e6f8ca1f-bd0d-4fa9-9d03-4a7eb6cb3a50&flag=289fb642-d51a-4762-b239-362f62d3aff1&flag=ef55b6c5-fe15-480d-ac20-07928e5b1895&flag=d286a816-033f-4c0e-a758-cbeaf4d1b93d&flag=6b34455a-1226-40fa-b799-24a0c52c59a4&flag=c555b066-c995-4075-99cf-0421b4ad6cba&flag=5997febb-b66f-4f13-98e2-2aa8c5c2f56b&flag=94ab8f4a-4f3e-4c8d-bc7c-e8906cee0325&flag=13766fa2-0709-4184-96e7-d4caa1fe3e2d&flag=f61b1550-8261-4fdd-a809-ce1415474fa8&flag=1ef28b32-b130-4d2a-a2ff-5c2d4d77cc13"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Wednesday Meal" />
-                    <span class="text-sm">Pasta</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Thu</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a chicken stir-fry with colorful vegetables on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=7fc57bd3-b2ac-4647-b2ce-d8036901a23c&flag=fdf02396-d426-4eff-aea0-bc5009396717&flag=747ad3c3-411f-4b62-844d-88ea482ad865&flag=d953edbc-3485-4866-868f-92ae376974af&flag=382d5dff-1e3d-49ed-a24a-f0d884939d70&flag=4a344f99-1cbc-45e5-89d1-087fa85b0027&flag=4e22130c-0370-430a-bdd3-3bcd6d7e3272&flag=aac359bb-520c-4df6-9609-a12dbaee2b3a&flag=e7883f7a-4093-4824-9233-48ef9a8d12c7&flag=3690a915-f248-457e-8410-62b63a74c668&flag=f77f4682-0ce0-41ea-abe8-2f2f93631fd5&flag=bfd575b2-9ae7-4df9-9c40-29be7d374306&flag=a7eb5128-0420-440f-bcbe-219f45f4b75b&flag=b671ea7c-a264-44b2-bcb5-c9e375d4cd0b&flag=d9b3217e-a5e5-48fc-83ae-6c412d8141ea&flag=e205f511-5263-4654-b838-a1319db6dcc7&flag=46995968-8653-49ba-9c2e-5f074472c6c2&flag=05f0a82f-da99-4f79-8686-c6b78c943273&flag=20da7078-7dd4-449f-8f42-44e27fd45bb3"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Thursday Meal" />
-                    <span class="text-sm">Stir-fry</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Fri</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a beef burger with fresh vegetables on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=fa3cf364-52bf-4757-b111-9dc2fb5a42e4&flag=2ebe99f4-9d43-4f28-946a-6a81f3de9c23&flag=f06c8773-ac9a-4a8e-a4d2-81114d458860&flag=43b78a17-84f0-4007-8283-86aa36aab2a4&flag=8ba6e5ef-da27-43b7-b399-28ddf21b0084&flag=fd08f4b5-d2e5-4d6a-af4c-ef60d28ae475&flag=e00570c6-c387-4606-8d75-782241c4b33a&flag=ad70ecd1-d7b1-44ee-ac67-dbec5466c1db&flag=28b833e9-9ce8-4b45-a583-831e50ddbc82&flag=c61a3927-a9dc-4319-8c4a-e1c22d0e3e8b&flag=5c460cf1-6c1c-48f0-ad95-3ef5dae75311&flag=9ddb473c-e013-4414-956b-c1fa8a4ad8cd&flag=db2acedb-65fd-434b-b5f4-619b05d513b8&flag=8dcd4d0a-56e3-4d5f-9439-8f8276add928&flag=0fd268f6-384a-4d48-8c28-dde568512159&flag=5bb6f664-7a07-4a0d-a1c6-9492179ffc3e&flag=14aa5aa1-d8f5-4705-8553-3f373d4d9a72&flag=95a35b58-d417-4eac-87e4-2242fa47ea14&flag=97533f0b-d731-4865-a94b-626c4995c279"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Friday Meal" />
-                    <span class="text-sm">Burger</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Sat</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of a pizza with fresh toppings on a wooden board against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=e3bcdb4c-fcd2-4f4c-8cc0-3db74b70cafd&flag=a80e7868-6638-4206-ab6d-4117a59c1a22&flag=b8eb11c6-a5d2-4098-b81d-38a296e2ef00&flag=96a6e3df-9ad0-4343-b123-8d912621b8f7&flag=208fcdd6-7bf2-4de2-895a-c4c579bcd645&flag=955b906a-468c-455e-845e-c9fcbf00c364&flag=4ab61e18-0a2b-49b2-acdf-61be70241995&flag=ee1faf40-ff86-4838-b39a-f97ba6b505c9&flag=1e2017c7-1cae-4fba-b2f1-ecb400d73388&flag=02720463-fc32-41ae-babc-620492da4126&flag=a7f18e2e-67d2-4524-811c-797d72f49114&flag=660c074a-1efa-4375-81ea-e3abd80f0d9d&flag=051108f4-1297-4c46-803c-19878f137ccb&flag=a7a7e27e-2fa9-4815-bfe3-d8b151f19160&flag=b5025bca-5009-48b3-adc8-9e949fb87129&flag=42e1f24b-920d-49fe-b5c6-615209452b2e&flag=1fa3dfc0-405f-42a9-a3b9-c0fe4056f9c9&flag=f10115b9-3909-4a73-ace0-dd90bcdc55ec&flag=3d336424-6d6b-4a17-8e54-c975f8e76534"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Saturday Meal" />
-                    <span class="text-sm">Pizza</span>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="text-sm font-medium text-gray-500 mb-2">Sun</div>
-                <div class="bg-gray-50 rounded-lg p-3">
-                    <img src="https://creatie.ai/ai/api/search-image?query=A professional food photography shot of grilled fish with lemon and herbs on a white plate against a light neutral background, styled with minimal props and natural lighting&width=100&height=100&orientation=squarish&flag=cc96c0f9-9e8e-4902-8222-15db665f5e8e&flag=ed89a108-c6f2-4118-8e9c-f5b161a164e3&flag=6ac67f1c-bfec-487d-8cc0-819f49b56d57&flag=ab7c7aa0-d237-4c7f-9d26-f7589df20a71&flag=7dfda80e-68b8-4b09-92bf-10f199bdaf0f&flag=1d301c49-dbe6-4231-b373-e88ae06b4868&flag=8319453d-cf38-4ca8-baf4-0813d56eb327&flag=36f1c248-845a-40e6-9852-d78d2468f187&flag=298eb3e1-2830-4097-8869-4f5bd4e827cc&flag=3aa6600b-e54d-4a23-8dc2-574be3e18691&flag=bbef6c7e-8c32-4049-9079-8557a03c82a7&flag=474babdb-a4db-4152-a841-23a899494a8f&flag=1443ead4-ea9a-4a50-af48-6e6ef57f9bb8&flag=0a4c001f-73d3-42ec-afa7-74b2c58daaa3&flag=ac54df14-7ee7-4163-9792-bfc20e8d4162&flag=8e633ec5-9429-448b-8a28-c3757abff143&flag=73ca6988-413f-48a7-90bf-529e05e634ab&flag=22cf77c8-2dd8-4cae-ba46-5811f870c1af&flag=8295e97d-3b40-43d5-a99d-fbb2c96f68a1"
-                        class="w-16 h-16 rounded-full mx-auto mb-2" alt="Sunday Meal" />
-                    <span class="text-sm">Fish</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="add-recipe-form" class="fixed inset-0 bg-black/30 flex items-center justify-center z-[100] hidden">
-        <h2 class="text-2xl font-semibold mb-6"
-            parentelement="&lt;div class=&#39;bg-white rounded-lg shadow-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto relative&#39;&gt;">
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"><i
-                    class="fas fa-times text-xl"></i></button>Add New Recipe
-        </h2>
-        <form class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Recipe Name</label><input
-                            type="text"
-                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent"
-                            placeholder="Enter recipe name" /></div>
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Preparation Time</label><input
-                            type="number"
-                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent"
-                            placeholder="Time in minutes" /></div>
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Difficulty Level</label><select
-                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent">
-                            <option>Easy</option>
-                            <option>Medium</option>
-                            <option>Hard</option>
-                        </select></div>
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Calories</label><input
-                            type="number"
-                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent"
-                            placeholder="Calories per serving" /></div>
-                </div>
-                <div class="space-y-4">
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Recipe Image</label>
-                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center"><i
-                                class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
-                            <p class="text-sm text-gray-500">Drag and drop an image here or<br /><button type="button"
-                                    class="text-custom hover:text-custom-dark">browse files</button></p>
-                        </div>
-                    </div>
-                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Ingredients</label><textarea
-                            class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent h-32"
-                            placeholder="Enter ingredients (one per line)"></textarea></div>
-                </div>
-            </div>
-            <div class="mt-6"><label class="block text-sm font-medium text-gray-700 mb-1">Instructions</label><textarea
-                    class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom focus:border-transparent h-32"
-                    placeholder="Enter cooking instructions"></textarea></div>
-            <div class="flex justify-end space-x-4 mt-6"><button type="button"
-                    class="px-6 py-2 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50">Cancel</button><button
-                    type="submit" class="px-6 py-2 bg-custom text-white rounded-lg hover:bg-custom/90">Save
-                    Recipe</button></div>
-        </form>
-    </div>
+
 </div>

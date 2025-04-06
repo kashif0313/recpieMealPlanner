@@ -21,8 +21,9 @@
                 <div class="flex items-center">
                     <input type="checkbox" class="mr-3 h-5 w-5 text-custom rounded focus:ring-custom"
                         (change)="toggleItem(item, 'toBuy')" />
-                    <span>{{ item.emoji }} {{ item.name }}</span>
+                    <span>{{ item.emoji || defaultEmoji }} {{ item.name }}</span>
                     <span class="ml-2 text-gray-500">({{ item.qty }})</span>
+                    <span class="ml-2 text-gray-500">({{ item.unit }})</span>
                 </div>
                 <button class="text-gray-400 hover:text-red-500" (click)="removeItem(item, 'toBuy')">
                     <i class="fas fa-times"></i>
@@ -39,8 +40,9 @@
                     <div class="flex items-center">
                         <input type="checkbox" checked class="mr-3 h-5 w-5 text-custom rounded focus:ring-custom"
                             (change)="toggleItem(item, 'bought')" />
-                        <span class="line-through">{{ item.emoji }} {{ item.name }}</span>
+                        <span class="line-through">{{ item.emoji ||defaultEmoji }} {{ item.name }}</span>
                         <span class="ml-2 text-gray-500">({{ item.qty }})</span>
+                        <span class="ml-2 text-gray-500">({{ item.unit }})</span>
                     </div>
                     <button class="text-gray-400 hover:text-red-500" (click)="removeItem(item, 'bought')">
                         <i class="fas fa-times"></i>

@@ -15,6 +15,7 @@ export class MyRecipeComponent {
 
   async ngOnInit(): Promise<void> {
     await this.loadRecipes();
+    this.filterListing('All');
   }
   changeListingView() {
     this.gridView = false;

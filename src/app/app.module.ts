@@ -14,6 +14,8 @@ import { MealListComponent } from './meal-list/meal-list.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { AddMealWeekPopupComponent } from './add-meal-week-popup/add-meal-week-popup.component';
+import { WeekPlanComponent } from './week-plan/week-plan.component';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -29,8 +31,14 @@ import { AddMealWeekPopupComponent } from './add-meal-week-popup/add-meal-week-p
     RecipeDetailComponent,
     ShoppingListComponent,
     AddMealWeekPopupComponent,
+    WeekPlanComponent,
   ],
-  imports: [FormsModule, BrowserModule, AppRoutingModule],
+  imports: [
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    ImageCropperComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

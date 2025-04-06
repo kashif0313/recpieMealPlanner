@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { predefinedRecipes } from '../helper/recipies';
 
 @Component({
   selector: 'app-home',
@@ -9,59 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   recipes: any[] = [];
   gridView: boolean = true;
-  openWeekMealModel: boolean = false;
-  currentDay: string = '';
 
   savedRecipes: any;
-  week: any = {
-    monday: '',
-    tuesday: '',
-    wednesday: '',
-    thursday: '',
-    friday: '',
-    saturday: '',
-    sunday: '',
-  };
+
   async ngOnInit(): Promise<void> {
     await this.loadRecipes();
-    await this.loadWeekMeals();
-  }
-  changeListingView() {
-    this.gridView = !this.gridView;
   }
   // Load recipes from localStorage
   loadRecipes() {
-    console.log('loading recipies ...');
-    this.savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
-    this.recipes = this.savedRecipes;
-  }
-  weekKeys = Object.keys(this.week);
-  loadWeekMeals() {
-    // Loop through each day of the week and fetch stored recipes
-    Object.keys(this.week).forEach((day) => {
-      const storedMeal = localStorage.getItem(day + '_recipie');
-      this.week[day] = storedMeal ? JSON.parse(storedMeal) : ''; // Assign meal data if found, otherwise keep it empty
-    });
+    console.log('loading recipes...');
 
-    console.log('Loaded Week Meals:', this.week);
-  }
-  addWeekMeal(day: string) {
-    this.currentDay = day;
-    this.openWeekMealModel = true;
-  }
-  confirmAction(data: any) {
-    console.log('model data == ', data);
-    if (data.confirm == true) {
-      let selectedRecipe = this.recipes.find(
-        (recipe: any) => recipe.id === data.mealId
-      );
-      localStorage.setItem(
-        this.currentDay + '_recipie',
-        JSON.stringify(selectedRecipe)
-      );
+    const existing = localStorage.getItem('recipes');
+
+    if (!existing || JSON.parse(existing).length === 0) {
+      // If no recipes in localStorage, use predefined and store them
+      localStorage.setItem('recipes', JSON.stringify(predefinedRecipes));
+      this.recipes = predefinedRecipes;
+      this.savedRecipes = predefinedRecipes;
+      console.log('Predefined recipes loaded into localStorage.');
+    } else {
+      // Load from localStorage
+      this.savedRecipes = JSON.parse(existing);
+      this.recipes = this.savedRecipes;
+      console.log('Recipes loaded from localStorage.');
     }
-
-    this.openWeekMealModel = false;
-    this.loadWeekMeals();
   }
 }

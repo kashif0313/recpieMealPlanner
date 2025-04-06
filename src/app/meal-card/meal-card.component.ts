@@ -12,6 +12,7 @@ export class MealCardComponent implements OnInit {
 
   @Input() mealData: any;
   @Input() displayRecipie: boolean = true;
+  @Input() favourite: boolean = false;
 
   @Output() selectedMeal: EventEmitter<{
     mealId: string;

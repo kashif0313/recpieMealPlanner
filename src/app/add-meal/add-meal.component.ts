@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { nutrientDatabase } from '../helper/ingredients';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-add-meal',
@@ -9,22 +11,24 @@ import { nutrientDatabase } from '../helper/ingredients';
   styleUrl: './add-meal.component.css',
 })
 export class AddMealComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sanitizer: DomSanitizer) {}
   filteredIngredients: string[] = [];
-  ngOnInit() {
-    // Initialize filtered ingredients with all keys in nutrientDatabase
-    this.filteredIngredients = Object.keys(nutrientDatabase);
-  }
+  imageChangedEvent: any = null;
+  cropModal = false;
+  imagePreview: SafeUrl | null = null;
+  cropped: boolean = false;
+  // image: SafeUrl | null = null; // Store cropped image
+  ratio = 1; // or use 4/3, 16/9 based on your layout
 
   // Recipe structure
-  recipe = {
+  recipe: any = {
     id: this.generateRandomId(),
     name: '',
     prepTime: null,
     difficulty: '',
     serving: 1, // changed from string 'Easy' to number for servings
     category: 'Breakfast',
-    image: '' as string | null,
+    image: '',
     ingredients: [] as { name: string; qty: number | null; unit: string }[],
     instructions: '',
     nutrition: {
@@ -41,8 +45,10 @@ export class AddMealComponent implements OnInit {
     unit: '',
   };
 
-  imagePreview: string | null = null;
-
+  ngOnInit() {
+    // Initialize filtered ingredients with all keys in nutrientDatabase
+    this.filteredIngredients = Object.keys(nutrientDatabase);
+  }
   generateRandomId(length: number = 6): string {
     const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -50,35 +56,51 @@ export class AddMealComponent implements OnInit {
       characters.charAt(Math.floor(Math.random() * characters.length))
     ).join('');
   }
-
-  // Handle image input (file select or drag and drop)
   handleFileInput(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.previewImage(file);
-    }
-  }
-
-  // Handle drag and drop
-  handleDragOver(event: any) {
-    event.preventDefault(); // Prevent default to allow drop
+    this.imageChangedEvent = event; // Pass to cropper
+    this.cropModal = true;
   }
 
   handleDrop(event: any) {
     event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      this.previewImage(file);
+    this.imageChangedEvent = {
+      target: { files: event.dataTransfer.files },
+    };
+    this.cropModal = true;
+  }
+  handleDragOver(event: any) {
+    event.preventDefault(); // Prevent default to allow drop
+    this.imageChangedEvent = {
+      target: { files: event.dataTransfer.files },
+    };
+    this.cropModal = true;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    console.log('ima croppinv', event);
+    if (event.objectUrl) {
+      this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
+        event.objectUrl
+      );
+      console.log('ima crop== ', this.imagePreview);
     }
   }
 
-  // Image preview handler
-  previewImage(file: File) {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.imagePreview = e.target.result;
-    };
-    reader.readAsDataURL(file);
+  confirmCrop() {
+    console.log('ima == ', this.imagePreview);
+
+    this.cropModal = false;
+    // this.EmitTitle.emit(this.imagePreview); // Optional emit
+  }
+
+  removeImage() {
+    this.imagePreview = null;
+    this.imageChangedEvent = null;
+  }
+
+  closeModal() {
+    this.cropModal = false;
+    this.imageChangedEvent = null;
+    this.imagePreview = null;
   }
 
   // Add new ingredient to the recipe
@@ -106,7 +128,10 @@ export class AddMealComponent implements OnInit {
     let totalFat = 0;
     let totalCarbs = 0;
 
-    this.recipe.ingredients.forEach((ingredient) => {
+    // Shopping list initialization
+    let shoppingList: { name: string; qty: number | null; unit: string }[] = [];
+
+    this.recipe.ingredients.forEach((ingredient: any) => {
       const key = ingredient.name
         .toLowerCase()
         .replace(/\s+/g, '_') as keyof typeof nutrientDatabase;
@@ -147,6 +172,13 @@ export class AddMealComponent implements OnInit {
         totalProtein += match.protein * factor;
         totalFat += match.fat * factor;
         totalCarbs += match.carbs * factor;
+
+        // Adding to shopping list
+        shoppingList.push({
+          name: ingredient.name,
+          qty: ingredient.qty,
+          unit: ingredient.unit,
+        });
       }
     });
 
@@ -160,11 +192,24 @@ export class AddMealComponent implements OnInit {
       carbs: +(totalCarbs / servings).toFixed(1),
     };
 
+    // Store recipe in localStorage
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     savedRecipes.push(this.recipe);
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
 
+    // Save the shopping list in localStorage
+    const savedShoppingLists = JSON.parse(
+      localStorage.getItem('shoppingLists') || '[]'
+    );
+    savedShoppingLists.push({
+      recipeName: this.recipe.name,
+      list: shoppingList,
+    });
+    localStorage.setItem('shoppingLists', JSON.stringify(savedShoppingLists));
+
     console.log('Meals:', savedRecipes);
+    console.log('Shopping List:', shoppingList);
+
     this.router.navigate(['/']);
   }
 
