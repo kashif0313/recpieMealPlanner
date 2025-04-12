@@ -12,17 +12,16 @@
                 <i class="fas fa-book"></i>
                 <span>My Recipes</span>
             </a>
-            <a href="#"
-                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2">
-                <i class="fas fa-calendar"></i>
-                <span>Meal Plans</span>
-            </a>
+            <a [routerLink]="['/dietPlan']"
+                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2"><i
+                    class="fas fa-utensils"></i><span>Special Diet Plans</span></a>
             <a [routerLink]="['/shoppingList']"
                 class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Shopping List</span>
             </a>
-            <a class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50">
+            <a [routerLink]="['/favourites']"
+                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50">
                 <i class="fas fa-heart"></i>
                 <span>Favorites</span>
             </a>

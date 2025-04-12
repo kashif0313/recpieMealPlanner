@@ -9,7 +9,7 @@
     <div class="p-4">
         <div class="flex items-center justify-between mb-2">
             <h3 class="font-medium">{{ mealData.name }}</h3>
-            <button class="text-gray-400 hover:text-custom">
+            <button class="text-gray-400 hover:text-custom" (click)="toggleMealToFavourite()">
                 <i class="far fa-heart" *ngIf="!favourite"></i>
                 <i class="fa-solid fa-heart text-red-500" *ngIf="favourite"></i>
             </button>

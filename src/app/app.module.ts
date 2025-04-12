@@ -16,6 +16,13 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { AddMealWeekPopupComponent } from './add-meal-week-popup/add-meal-week-popup.component';
 import { WeekPlanComponent } from './week-plan/week-plan.component';
 import { ImageCropperComponent } from 'ngx-image-cropper';
+import { FavouritesComponent } from './favourites/favourites.component';
+import { DietPlanComponent } from './diet-plan/diet-plan.component';
+import { AddDietPlanComponent } from './add-diet-plan/add-diet-plan.component';
+import { DietPlanDetailsComponent } from './diet-plan-details/diet-plan-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TodayMealComponent } from './today-meal/today-meal.component';
+import { TodayMealDetailsComponent } from './today-meal-details/today-meal-details.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +39,19 @@ import { ImageCropperComponent } from 'ngx-image-cropper';
     ShoppingListComponent,
     AddMealWeekPopupComponent,
     WeekPlanComponent,
+    FavouritesComponent,
+    DietPlanComponent,
+    AddDietPlanComponent,
+    DietPlanDetailsComponent,
+    TodayMealComponent,
+    TodayMealDetailsComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     ImageCropperComponent,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

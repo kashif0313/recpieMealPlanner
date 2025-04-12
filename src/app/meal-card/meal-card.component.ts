@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MealCardComponent implements OnInit {
   selectedMealId: string = '';
-
+  myFavourites: any[] = [];
   @Input() mealData: any;
   @Input() displayRecipie: boolean = true;
   @Input() favourite: boolean = false;
@@ -20,10 +20,18 @@ export class MealCardComponent implements OnInit {
     mealId: string;
   }>();
 
+  @Output() favToggle: EventEmitter<{
+    toggle: boolean;
+  }> = new EventEmitter<{
+    toggle: boolean;
+  }>();
+
   constructor(private router: Router) {}
 
   async ngOnInit(): Promise<void> {
-    console.log('meal ==', this.mealData);
+    const stored = localStorage.getItem('favourites');
+    const existingFavourites = stored ? JSON.parse(stored) : [];
+    this.favourite = existingFavourites.includes(this.mealData.id);
   }
 
   selectMealID(value?: any) {
@@ -35,5 +43,26 @@ export class MealCardComponent implements OnInit {
     if (this.displayRecipie) {
       this.router.navigate(['/recipeDetail', this.mealData.id]);
     }
+  }
+  toggleMealToFavourite() {
+    const stored = localStorage.getItem('favourites');
+    let existingFavourites = stored ? JSON.parse(stored) : [];
+
+    const mealIndex = existingFavourites.indexOf(this.mealData.id);
+
+    if (mealIndex > -1) {
+      // Already exists – remove it
+      existingFavourites.splice(mealIndex, 1);
+      this.favourite = false;
+      this.favToggle.emit({ toggle: false });
+    } else {
+      // Not in favourites – add it
+      existingFavourites.push(this.mealData.id);
+      this.favourite = true;
+      this.favToggle.emit({ toggle: true });
+    }
+
+    this.myFavourites = existingFavourites;
+    localStorage.setItem('favourites', JSON.stringify(existingFavourites));
   }
 }

@@ -1,0 +1,15 @@
+<div class="max-w-7xl mx-auto px-6 py-8">
+    <h1 class="text-2xl font-semibold mb-6">My Favourites Recipies</h1>
+    <div class="flex  gap-6">
+        <div *ngIf="favouriteMeals.length > 0; else noRecipes">
+            <div class="flex flex-wrap justify-center gap-6">
+                <app-meal-card *ngFor="let recipe of favouriteMeals; let i = index" [mealData]="recipe"
+                    (favToggle)="listenFavChange($event)"></app-meal-card>
+            </div>
+
+        </div>
+        <ng-template #noRecipes>
+            <p class="text-gray-500">No recipes found. Please add a recipe first!</p>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 mb-3">
+    <div class="flex justify-content-between">
+        <h2 class="text-2xl font-semibold mb-6">Today's Meals</h2>
+        <!-- Today's Meals Grid -->
+        <div class=" top-4 left-4 flex space-x-2 z-10">
+            <!-- <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full" (click)="prevDay()"
+                [disabled]="currentIndex === 0"> -->
+            <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full" (click)="prevDay()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full" (click)="nextDay()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Navigation Arrows -->
+        <div class="flex items-start space-x-4" *ngIf="breakfast">
+            <div class="bg-yellow-50 p-3 rounded-lg">
+                <i class="fas fa-sun text-yellow-500"></i>
+            </div>
+            <div>
+                <h3 class="font-medium mb-2 cursor-pointer" (click)="openDetails('Breakfast')">Breakfast - 8:00 AM</h3>
+                <div class="flex items-center space-x-2">
+                    <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
+                        [popupData]="popupData"></app-today-meal-details>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-4" *ngIf="lunch">
+            <div class="bg-blue-50 p-3 rounded-lg"><i class="fas fa-cloud-sun text-blue-500"></i></div>
+            <div>
+                <h3 class="font-medium mb-2" (click)="openDetails('Lunch')">Lunch - 1:00 PM</h3>
+                <div class="flex items-center space-x-2">
+                    <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
+                        [popupData]="popupData"></app-today-meal-details>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-4" *ngIf="snack">
+            <div class="bg-blue-50 p-3 rounded-lg"><i class="fas fa-cookie text-blue-500"></i></div>
+            <div>
+                <h3 class="font-medium mb-2" (click)="openDetails('Snack')">Snack - 3:00 PM</h3>
+                <div class="flex items-center space-x-2">
+                    <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
+                        [popupData]="popupData"></app-today-meal-details>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-4" *ngIf="dinner">
+            <div class="bg-indigo-50 p-3 rounded-lg"><i class="fas fa-moon text-indigo-500"></i></div>
+            <div>
+                <h3 class="font-medium mb-2" (click)="openDetails('Dinner')">Dinner - 7:00 PM</h3>
+                <div class="flex items-center space-x-2">
+                    <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
+                        [popupData]="popupData"></app-today-meal-details>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show Next Meals Button -->
+    <!-- <div class="mt-6 text-right">
+        <button class="bg-black text-white px-4 py-2 rounded-lg hover:bg-custom/90" (click)="toggleFutureMeals()">
+            {{ showFutureMeals ? 'Hide Future Meals' : 'Show Next Meals' }}
+        </button>
+    </div> -->
+
+    <!-- Future Meals Section -->
+    <!-- <div *ngIf="showFutureMeals" class="mt-6">
+        <h3 class="text-xl font-semibold mb-4">Upcoming Meals</h3>
+        <div class="space-y-3">
+            <div *ngFor="let meal of recipes" class="p-4 border rounded-lg flex items-center gap-4">
+                <img [src]="meal.image" class="w-14 h-14 rounded object-cover" />
+                <div>
+                    <h4 class="font-medium">{{ meal.name }}</h4>
+                    <p class="text-sm text-gray-500">{{ meal.date }} - {{ meal.time }}</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

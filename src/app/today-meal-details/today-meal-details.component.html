@@ -1,0 +1,29 @@
+<!-- Meal Detail Modal -->
+<div class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl w-full max-w-md mx-4 p-6 shadow-xl relative">
+        <h2 class="text-xl font-semibold mb-4">{{ selectedMealType }} Details</h2>
+
+        <div *ngIf="popupData.length > 0; else noMeals" class="space-x">
+            <div *ngFor="let item of popupData; let last = last" class="mb-4">
+                <div class="flex items-center gap-3">
+                    <img *ngIf="item.selectedRecipe?.image" [src]="item.selectedRecipe.image"
+                        class="w-12 h-12 object-cover rounded" />
+                    <div>
+                        <p class="font-medium">{{ item.name }}</p>
+                        <p class="text-sm text-gray-500" *ngIf="item.qty">Quantity : {{ item.qty }}</p>
+                    </div>
+                </div>
+                <hr *ngIf="!last" class="my-3 border-t border-gray-200" />
+            </div>
+        </div>
+
+
+        <ng-template #noMeals>
+            <p class="text-gray-500">No items found for {{ selectedMealType }} today.</p>
+        </ng-template>
+
+        <button class="absolute top-2 right-3 text-gray-500 hover:text-black text-xl" (click)="closePoopup()">
+            &times;
+        </button>
+    </div>
+</div>
