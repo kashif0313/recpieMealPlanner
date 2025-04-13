@@ -8,7 +8,11 @@
             <div class="flex justify-between items-center mb-6">
                 <div>
                     <h3 class="text-xl font-medium">{{selectedRecipe.title}}</h3>
-                    <p class="text-gray-500 mt-1">{{selectedRecipe.days}}-day meal plan with 1800 calories per day</p>
+                    <p class="text-gray-500 mt-1">
+                        {{ selectedRecipe.days }}-day meal plan with
+                        {{ getCaloriesPerDay(selectedRecipe.nutrition.calories, selectedRecipe.days) }} calories per day
+                    </p>
+
                 </div>
                 <div class="flex space-x-3"><button
                         class="bg-custom text-white px-4 py-2 rounded-lg hover:bg-custom/90"><i
@@ -26,43 +30,59 @@
                                 class="ml-2">Daily Calories: {{selectedRecipe.nutrition.calories}} kcal</span></div>
                         <div class="flex items-center"><i class="fas fa-chart-pie w-6 text-custom"></i><span
                                 class="ml-2">Macros:
-                                {{selectedRecipe.nutrition.fat}} Fat, {{selectedRecipe.nutrition.protein}} Protein,
-                                {{selectedRecipe.nutrition.carbs}}
+                                {{selectedRecipe.nutrition.fat}}g Fat, {{selectedRecipe.nutrition.protein}}g Protein,
+                                {{selectedRecipe.nutrition.carbs}}g
                                 Carbs</span></div>
-                        <div class="flex items-center"><i class="fas fa-utensils w-6 text-custom"></i><span
+                        <!-- <div class="flex items-center"><i class="fas fa-utensils w-6 text-custom"></i><span
                                 class="ml-2">Meals per
-                                day: 3 + 2 snacks</span></div>
+                                day: 3 + 2 snacks</span></div> -->
                     </div>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4">Nutrition Goals</h4>
                     <div class="space-y-4">
+                        <!-- Fat -->
                         <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm text-gray-600">Fat</span><span
-                                    class="text-sm text-gray-600">70%</span></div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Fat</span>
+                                <span class="text-sm text-gray-600">{{ allMeals.nutrition.fat }}g</span>
+                            </div>
                             <div class="h-2 bg-gray-100 rounded-full">
-                                <div class="h-full w-[70%] bg-custom rounded-full"></div>
+                                <div class="h-full bg-yellow-500 rounded-full"
+                                    [style.width.%]="getPercentage(allMeals.nutrition.fat, nutritionGoals.fat)"></div>
                             </div>
                         </div>
+
+                        <!-- Protein -->
                         <div>
-                            <div class="flex justify-between mb-1"><span
-                                    class="text-sm text-gray-600">Protein</span><span
-                                    class="text-sm text-gray-600">25%</span></div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Protein</span>
+                                <span class="text-sm text-gray-600">{{ allMeals.nutrition.protein }}g</span>
+                            </div>
                             <div class="h-2 bg-gray-100 rounded-full">
-                                <div class="h-full w-[25%] bg-green-500 rounded-full"></div>
+                                <div class="h-full bg-green-500 rounded-full"
+                                    [style.width.%]="getPercentage(allMeals.nutrition.protein, nutritionGoals.protein)">
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Carbs -->
                         <div>
-                            <div class="flex justify-between mb-1"><span class="text-sm text-gray-600">Carbs</span><span
-                                    class="text-sm text-gray-600">5%</span></div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-600">Carbs</span>
+                                <span class="text-sm text-gray-600">{{ allMeals.nutrition.carbs }}g</span>
+                            </div>
                             <div class="h-2 bg-gray-100 rounded-full">
-                                <div class="h-full w-[5%] bg-blue-500 rounded-full"></div>
+                                <div class="h-full bg-blue-500 rounded-full"
+                                    [style.width.%]="getPercentage(allMeals.nutrition.carbs, nutritionGoals.carbs)">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="mt-8">
+            <!-- <div class="mt-8">
                 <h4 class="font-medium mb-4">Daily Meal Schedule</h4>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="border rounded-lg p-4">
@@ -73,8 +93,6 @@
                         <ul class="space-y-2 text-sm">
                             <li *ngFor=" let item of breakfast">{{item.name}}
                                 {{item.qty}} </li>
-                            <!-- <li>• Bacon (2 slices)</li>
-                            <li>• Bulletproof coffee</li> -->
                         </ul>
                         <p class="text-sm text-gray-500 mt-2">600 calories</p>
                     </div>
@@ -103,7 +121,62 @@
                         <p class="text-sm text-gray-500 mt-2">650 calories</p>
                     </div>
                 </div>
+            </div> -->
+            <div class="mt-8">
+                <h4 class="font-medium mb-4">Weekly Meal Schedule</h4>
+                <div *ngFor="let day of allMeals.mealsPerDay; let i = index" class="mb-4 border rounded-lg shadow-sm">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center px-4 py-3 bg-gray-100 cursor-pointer"
+                        (click)="toggleDay(i)">
+                        <h5 class="font-semibold">Day {{ i + 1 }} - {{ day.date }}</h5>
+                        <button class="text-gray-600 focus:outline-none">
+                            <i class="fas" [ngClass]="{
+                             'fa-chevron-down': expandedDay !== i,
+                             'fa-chevron-up': expandedDay === i
+                           }">
+                            </i>
+                        </button>
+                    </div>
+
+                    <!-- Expandable Section -->
+                    <div *ngIf="expandedDay === i" class="p-4 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white">
+
+                        <!-- Meal Block Reusable Template -->
+                        <ng-container *ngFor="let mealType of ['Breakfast', 'Lunch', 'Snack', 'Dinner']">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center mb-3">
+                                    <div class="p-2 rounded-lg" [ngClass]="{
+                                'bg-yellow-50': mealType === 'Breakfast',
+                                'bg-blue-50': mealType === 'Lunch',
+                                'bg-green-50': mealType === 'Snack',
+                                'bg-indigo-50': mealType === 'Dinner'
+                              }">
+                                        <i class="fas" [ngClass]="{
+                                  'fa-sun text-yellow-500': mealType === 'Breakfast',
+                                  'fa-cloud-sun text-blue-500': mealType === 'Lunch',
+                                  'fa-cookie text-green-500': mealType === 'Snack',
+                                  'fa-moon text-indigo-500': mealType === 'Dinner'
+                                }"></i>
+                                    </div>
+                                    <h5 class="ml-3 font-medium">{{ mealType }}</h5>
+                                </div>
+
+                                <ul *ngIf="day.meals[mealType] && day.meals[mealType].length > 0; else noMeal"
+                                    class="space-y-2 text-sm">
+                                    <li *ngFor="let item of day.meals[mealType]">
+                                        {{ item.name }} <span *ngIf="item.qty">- {{ item.qty }}</span>
+                                    </li>
+                                </ul>
+                                <ng-template #noMeal>
+                                    <p class="text-gray-400 text-sm">No {{ mealType.toLowerCase() }} items listed.</p>
+                                </ng-template>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
             </div>
+
             <div class="mt-8">
                 <h4 class="font-medium mb-4">Additional Notes</h4>
                 <ul class="list-disc list-inside text-gray-600 space-y-2">

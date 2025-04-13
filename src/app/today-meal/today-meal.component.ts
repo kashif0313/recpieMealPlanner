@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,6 +6,25 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
   templateUrl: './today-meal.component.html',
   styleUrl: './today-meal.component.css',
+  animations: [
+    trigger('slideAnimation', [
+      transition(':enter', []),
+      transition('* => slideLeft', [
+        style({ transform: 'translateX(100%)', opacity: 0 }),
+        animate(
+          '300ms ease-out',
+          style({ transform: 'translateX(0)', opacity: 1 })
+        ),
+      ]),
+      transition('* => slideRight', [
+        style({ transform: 'translateX(-100%)', opacity: 0 }),
+        animate(
+          '300ms ease-out',
+          style({ transform: 'translateX(0)', opacity: 1 })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class TodayMealComponent implements OnInit {
   breakfast: any;
@@ -17,6 +37,7 @@ export class TodayMealComponent implements OnInit {
   popupData: any;
   today = new Date().toISOString().split('T')[0];
   minDate = new Date().toISOString().split('T')[0]; // today's real date (limit)
+  animationState: any;
 
   ngOnInit(): void {
     this.loadRecipes();
@@ -75,13 +96,14 @@ export class TodayMealComponent implements OnInit {
     current.setDate(current.getDate() + 1);
     this.today = current.toISOString().split('T')[0];
     console.log('Next date:', this.today);
+    this.animationState = 'slideLeft';
     this.loadRecipes();
   }
 
   prevDay() {
     const current = new Date(this.today);
     const min = new Date(this.minDate);
-
+    this.animationState = 'slideRight';
     if (current > min) {
       current.setDate(current.getDate() - 1);
       this.today = current.toISOString().split('T')[0];

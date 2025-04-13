@@ -15,6 +15,7 @@ export class DietPlanDetailsComponent implements OnInit {
   lunch: any;
   snack: any;
   dinner: any;
+  allMeals: any;
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const recipeId = params.get('object'); // Make sure this matches your route parameter
@@ -22,6 +23,23 @@ export class DietPlanDetailsComponent implements OnInit {
         this.loadRecipes(recipeId);
       }
     });
+  }
+  expandedDay: number | null = 0;
+
+  toggleDay(index: number) {
+    this.expandedDay = this.expandedDay === index ? null : index;
+  }
+  nutritionGoals = {
+    fat: 70, // grams
+    protein: 120, // grams
+    carbs: 300, // grams
+  };
+  getPercentage(current: number, goal: number): number {
+    return Math.min((current / goal) * 100, 100);
+  }
+  getCaloriesPerDay(totalCalories: number, days: number): number {
+    if (!days || days === 0) return 0;
+    return Math.round(totalCalories / days);
   }
 
   loadRecipes(recipeId: string) {
@@ -33,6 +51,7 @@ export class DietPlanDetailsComponent implements OnInit {
     this.selectedRecipe = this.recipes.find(
       (recipe: any) => recipe.id === recipeId
     );
+    this.allMeals = this.selectedRecipe;
 
     if (!this.selectedRecipe) return;
 

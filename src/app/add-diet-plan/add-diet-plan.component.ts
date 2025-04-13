@@ -97,7 +97,6 @@ export class AddDietPlanComponent {
     this.generateDays();
   }
 
-  // Helper to calculate nutrition from selected meals
   calculateTotalNutrition(days: any[]): {
     fat: number;
     protein: number;
@@ -110,12 +109,19 @@ export class AddDietPlanComponent {
     let totalCalories = 0;
 
     days.forEach((day) => {
-      Object.values(day.meals).forEach((meal: any) => {
-        if (meal && meal.nutrition) {
-          totalFat += meal.nutrition.fat || 0;
-          totalProtein += meal.nutrition.protein || 0;
-          totalCarbs += meal.nutrition.carbs || 0;
-          totalCalories += meal.nutrition.calories || 0;
+      const meals = day.meals;
+
+      Object.values(meals).forEach((mealList: any) => {
+        if (Array.isArray(mealList)) {
+          mealList.forEach((item: any) => {
+            const nutrition = item?.selectedRecipe?.nutrition;
+            if (nutrition) {
+              totalFat += nutrition.fat || 0;
+              totalProtein += nutrition.protein || 0;
+              totalCarbs += nutrition.carbs || 0;
+              totalCalories += nutrition.calories || 0;
+            }
+          });
         }
       });
     });
