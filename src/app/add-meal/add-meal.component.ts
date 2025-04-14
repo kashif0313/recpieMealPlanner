@@ -15,10 +15,10 @@ export class AddMealComponent implements OnInit {
   filteredIngredients: string[] = [];
   imageChangedEvent: any = null;
   cropModal = false;
-  imagePreview: SafeUrl | null = null;
+  imagePreview: any;
   cropped: boolean = false;
   // image: SafeUrl | null = null; // Store cropped image
-  ratio = 1; // or use 4/3, 16/9 based on your layout
+  ratio = 16 / 5; // or use 4/3, 16/9 based on your layout
 
   // Recipe structure
   recipe: any = {
@@ -56,9 +56,24 @@ export class AddMealComponent implements OnInit {
       characters.charAt(Math.floor(Math.random() * characters.length))
     ).join('');
   }
+
   handleFileInput(event: any) {
-    this.imageChangedEvent = event; // Pass to cropper
     this.cropModal = true;
+    this.imageChangedEvent = event;
+
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      const img = new Image();
+      img.onload = () => {
+        // Check if image is portrait (height > width)
+        // this.ratio = img.height > img.width ? 3 / 4 : 4 / 3; // Use 3:4 for portrait, 4:3 for landscape
+      };
+      img.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
   }
 
   handleDrop(event: any) {
@@ -76,20 +91,17 @@ export class AddMealComponent implements OnInit {
     this.cropModal = true;
   }
   imageCropped(event: ImageCroppedEvent) {
-    console.log('ima croppinv', event);
+    console.log('image before == ', this.imagePreview);
     if (event.objectUrl) {
       this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
         event.objectUrl
       );
-      console.log('ima crop== ', this.imagePreview);
     }
+    console.log('image == ', this.imagePreview);
   }
 
   confirmCrop() {
-    console.log('ima == ', this.imagePreview);
-
     this.cropModal = false;
-    // this.EmitTitle.emit(this.imagePreview); // Optional emit
   }
 
   removeImage() {
@@ -206,9 +218,6 @@ export class AddMealComponent implements OnInit {
       list: shoppingList,
     });
     localStorage.setItem('shoppingLists', JSON.stringify(savedShoppingLists));
-
-    console.log('Meals:', savedRecipes);
-    console.log('Shopping List:', shoppingList);
 
     this.router.navigate(['/']);
   }

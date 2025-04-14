@@ -35,7 +35,6 @@ export class MealCardComponent implements OnInit {
   }
 
   selectMealID(value?: any) {
-    console.log('meal selected radio id = ', value);
     this.selectedMeal.emit(value);
   }
 

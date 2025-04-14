@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit {
   }
   // Load recipes from localStorage
   loadRecipes() {
-    console.log('loading recipes...');
-
     const existing = localStorage.getItem('recipes');
 
     if (!existing || JSON.parse(existing).length === 0) {
@@ -27,12 +25,10 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('recipes', JSON.stringify(predefinedRecipes));
       this.recipes = predefinedRecipes;
       this.savedRecipes = predefinedRecipes;
-      console.log('Predefined recipes loaded into localStorage.');
     } else {
       // Load from localStorage
       this.savedRecipes = JSON.parse(existing);
       this.recipes = this.savedRecipes;
-      console.log('Recipes loaded from localStorage.');
     }
   }
 }

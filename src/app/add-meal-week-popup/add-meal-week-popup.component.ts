@@ -17,13 +17,11 @@ export class AddMealWeekPopupComponent implements OnInit {
   @Output() confirmAction: EventEmitter<any> = new EventEmitter<any>();
 
   loadRecipes() {
-    console.log('loading recipies ...');
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     this.recipes = savedRecipes;
   }
   selectedMealFunction(data: any) {
     this.selectedMealId = data;
-    console.log('selected meal == ', data);
   }
 
   closePoopup() {

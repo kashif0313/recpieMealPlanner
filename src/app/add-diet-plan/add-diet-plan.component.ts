@@ -135,8 +135,13 @@ export class AddDietPlanComponent {
   }
 
   saveDietPlan() {
+    // Load existing plans from localStorage
+    const existingPlans = JSON.parse(localStorage.getItem('dietPlans') || '[]');
+
+    // Calculate nutrition
     const nutrition = this.calculateTotalNutrition(this.daysForm);
 
+    // Create new plan
     const newPlan = {
       id: this.generateRandomId(8),
       title: this.planTitle,
@@ -145,10 +150,17 @@ export class AddDietPlanComponent {
       nutrition: nutrition,
     };
 
-    this.dietPlans.push(newPlan);
-    localStorage.setItem('dietPlans', JSON.stringify(this.dietPlans));
+    // Add to existing plans
+    existingPlans.push(newPlan);
+
+    // Save updated plans back to localStorage
+    localStorage.setItem('dietPlans', JSON.stringify(existingPlans));
+
+    // Optionally update the component's array too
+    this.dietPlans = existingPlans;
+
+    // Redirect
     this.router.navigate(['dietPlan']);
-    console.log('Diet plan saved:', newPlan);
   }
 
   addMealItem(dayIndex: number, slot: string) {

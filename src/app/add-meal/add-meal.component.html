@@ -63,18 +63,19 @@
                         </div>
 
                         <!-- Image Preview -->
-                        <div *ngIf="imagePreview" class="mt-4 relative inline-block" style="max-height: 200px;">
+                        <div *ngIf="imagePreview" class="mt-4 relative inline-block object-fit-contain"
+                            style="max-height: 200px;">
                             <div (click)="removeImage()" class="absolute top-1 right-1 text-gray-600 hover:text-red-500"
                                 title="Remove Image">
                                 <i class="fa-solid fa-circle-xmark"></i>
                             </div>
                             <img [src]="imagePreview" alt="Image Preview"
-                                class="max-w-full h-auto rounded-lg border border-gray-300" />
+                                class="max-w-full rounded-lg border border-gray-300" style="max-height: 200px;" />
                         </div>
                     </div>
 
                     <!-- Cropper Modal -->
-                    <div class="modal fade" [class.show]="cropModal" [style.display]="cropModal ? 'block' : 'none'"
+                    <!-- <div class="modal fade" [class.show]="cropModal" [style.display]="cropModal ? 'block' : 'none'"
                         tabindex="-1">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -88,17 +89,14 @@
                                     </image-cropper>
                                 </div>
                                 <div class="modal-footer">
-                                    <!-- <button type="button" class="btn btn-secondary"
-                                        (click)="closeModal()">Cancel</button>
-                                    <button type="button" class="btn btn-primary" (click)="confirmCrop()">Apply
-                                        Crop</button> -->
+                                 
                                     <app-button [normalBtn]="true" (click)="closeModal()">Cancel</app-button>
 
                                     <app-button [successBtn]="true" (click)="confirmCrop()">Apply Crop</app-button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Ingredients Section -->
                     <div>
@@ -183,5 +181,31 @@
                 <app-button [successBtn]="true" [type]="'submit'">Save Recipie </app-button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Cropper Modal -->
+<div *ngIf="cropModal"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div class="bg-white rounded-lg shadow-xl w-1/2 max-h-[70vh] overflow-hidden flex flex-col">
+        <!-- Header -->
+        <div class="flex justify-between items-center px-4 py-3 border-b">
+            <h5 class="text-lg font-medium">Crop Image</h5>
+            <button type="button" (click)="closeModal()" class="text-gray-500 hover:text-red-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <div class="flex max-h-[50vh] w-full">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="ratio"
+                format="png" (imageCropped)="imageCropped($event)">
+            </image-cropper>
+        </div>
+
+        <!-- Footer -->
+        <div class="flex justify-end space-x-4 px-4 py-3 border-t">
+            <app-button [normalBtn]="true" (click)="closeModal()">Cancel</app-button>
+            <app-button [successBtn]="true" (click)="confirmCrop()">Apply Crop</app-button>
+        </div>
     </div>
 </div>

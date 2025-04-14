@@ -25,7 +25,6 @@ export class MyRecipeComponent {
   }
   // Load recipes from localStorage
   loadRecipes() {
-    console.log('loading recipies ...');
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     this.recipes = savedRecipes;
   }

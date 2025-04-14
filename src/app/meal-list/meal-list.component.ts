@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-meal-list',
@@ -8,8 +8,22 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MealListComponent implements OnInit {
   @Input() mealData: any;
+  @Input() displayRecipie: boolean = true;
 
-  async ngOnInit(): Promise<void> {
-    console.log('meal list ==', this.mealData);
+  @Output() selectedMeal: EventEmitter<{
+    mealId: string;
+  }> = new EventEmitter<{
+    mealId: string;
+  }>();
+
+  @Output() favToggle: EventEmitter<{
+    toggle: boolean;
+  }> = new EventEmitter<{
+    toggle: boolean;
+  }>();
+
+  async ngOnInit(): Promise<void> {}
+  selectMealID(value?: any) {
+    this.selectedMeal.emit(value);
   }
 }

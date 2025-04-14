@@ -1,8 +1,6 @@
 <div class="bg-white rounded-lg shadow-sm overflow-hidden relative" style="max-width:220px;">
     <!-- Radio Button (Top-Left) -->
-    <input type="radio" name="selectedMeal" *ngIf="!displayRecipie" [value]="mealData.id"
-        (click)="selectMealID(mealData.id)"
-        class="absolute top-2 left-2 w-5 h-5 text-custom border-gray-300 focus:ring-custom cursor-pointer" />
+
 
     <img [src]="mealData.image" class="h-48 w-full object-cover" alt="{{ mealData.name }}" (click)="openDetails()" />
 

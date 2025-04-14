@@ -21,7 +21,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   loadRecipes(recipeId: string) {
-    console.log('Loading recipes...');
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     this.recipes = savedRecipes;
 
@@ -29,7 +28,5 @@ export class RecipeDetailComponent implements OnInit {
     this.selectedRecipe = this.recipes.find(
       (recipe: any) => recipe.id === recipeId
     );
-
-    console.log('Selected Recipe:', this.selectedRecipe);
   }
 }

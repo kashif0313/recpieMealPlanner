@@ -44,12 +44,10 @@ export class TodayMealComponent implements OnInit {
   }
 
   loadRecipes() {
-    console.log('Loading recipes...');
     const savedRecipes = JSON.parse(localStorage.getItem('dietPlans') || '[]');
     this.recipes = savedRecipes;
 
     if (!this.recipes || this.recipes.length === 0) {
-      console.warn('No recipes found');
       return;
     }
 
@@ -71,9 +69,6 @@ export class TodayMealComponent implements OnInit {
         this.dinner = meals.Dinner;
 
         found = true;
-
-        console.log('Selected Recipe:', this.selectedRecipe);
-        console.log('Today Meal:', todayMeal);
         break;
       }
     }
@@ -83,19 +78,13 @@ export class TodayMealComponent implements OnInit {
       this.lunch = false;
       this.snack = false;
       this.dinner = false;
-      console.log('No meals found for today in any recipe');
     }
-
-    console.log(
-      `Breakfast: ${this.breakfast}, Lunch: ${this.lunch}, Snack: ${this.snack}, Dinner: ${this.dinner}`
-    );
   }
 
   nextDay() {
     const current = new Date(this.today);
     current.setDate(current.getDate() + 1);
     this.today = current.toISOString().split('T')[0];
-    console.log('Next date:', this.today);
     this.animationState = 'slideLeft';
     this.loadRecipes();
   }
@@ -107,9 +96,6 @@ export class TodayMealComponent implements OnInit {
     if (current > min) {
       current.setDate(current.getDate() - 1);
       this.today = current.toISOString().split('T')[0];
-      console.log('Previous date:', this.today);
-    } else {
-      console.log('Cannot go to past dates');
     }
     this.loadRecipes();
   }
@@ -133,7 +119,6 @@ export class TodayMealComponent implements OnInit {
       default:
         this.popupData = [];
     }
-    console.log('data == ', this.popupData);
   }
   closePopup() {
     this.openModelPopup = false;

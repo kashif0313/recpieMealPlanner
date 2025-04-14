@@ -4,12 +4,12 @@
             <h3 class="text-xl font-semibold">Add Meal to Plan</h3><button class="text-gray-500 hover:text-gray-700"
                 (click)="closePoopup()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto">
+        <div class="gap-4 max-h-[60vh] overflow-y-auto">
             <div *ngIf="recipes.length > 0; else noRecipes">
 
-                <div class="flex  gap-6">
-                    <app-meal-card *ngFor="let recipe of recipes; let i = index" [mealData]="recipe"
-                        [displayRecipie]="false" (selectedMeal)="selectedMealFunction($event)"></app-meal-card>
+                <div class="flex flex-wrap  gap-6">
+                    <app-meal-list *ngFor="let recipe of recipes; let i = index" [mealData]="recipe"
+                        [displayRecipie]="false" (selectedMeal)="selectedMealFunction($event)"></app-meal-list>
                 </div>
 
             </div>

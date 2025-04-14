@@ -43,7 +43,6 @@ export class DietPlanDetailsComponent implements OnInit {
   }
 
   loadRecipes(recipeId: string) {
-    console.log('Loading recipes...');
     const savedRecipes = JSON.parse(localStorage.getItem('dietPlans') || '[]');
     this.recipes = savedRecipes;
 
@@ -76,12 +75,49 @@ export class DietPlanDetailsComponent implements OnInit {
       this.snack = false;
       this.dinner = false;
     }
+  }
+  downloadPlan(): void {
+    let textContent = `Meal Plan: ${this.selectedRecipe?.title}\n`;
+    textContent += `Duration: ${this.selectedRecipe?.days} days\n`;
+    textContent += `Calories per Day: ${this.getCaloriesPerDay(
+      this.selectedRecipe?.nutrition?.calories,
+      this.selectedRecipe?.days
+    )} kcal\n\n`;
 
-    console.log('Selected Recipe:', this.selectedRecipe);
-    console.log('Today Meal:', todayMeal);
-    console.log('Breakfast Meal:', this.breakfast);
-    console.log(
-      `Breakfast: ${this.breakfast}, Lunch: ${this.lunch}, Snack: ${this.snack}, Dinner: ${this.dinner}`
-    );
+    textContent += `Nutrition Goals:\n`;
+    textContent += `- Fat: ${this.allMeals?.nutrition?.fat}g\n`;
+    textContent += `- Protein: ${this.allMeals?.nutrition?.protein}g\n`;
+    textContent += `- Carbs: ${this.allMeals?.nutrition?.carbs}g\n\n`;
+
+    textContent += `Weekly Meal Schedule:\n`;
+
+    this.allMeals?.mealsPerDay?.forEach((day: any, index: number) => {
+      textContent += `\nDay ${index + 1} - ${day.date}\n`;
+
+      ['Breakfast', 'Lunch', 'Snack', 'Dinner'].forEach((mealType) => {
+        textContent += `  ${mealType}:\n`;
+
+        const items = day.meals[mealType];
+        if (items && items.length > 0) {
+          items.forEach((item: any) => {
+            textContent += `    - ${item.name}${
+              item.qty ? ` (${item.qty})` : ''
+            }\n`;
+          });
+        } else {
+          textContent += `    - No items listed\n`;
+        }
+      });
+    });
+
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `meal-plan-${new Date().toISOString().split('T')[0]}.txt`;
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   }
 }

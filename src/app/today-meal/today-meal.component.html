@@ -60,26 +60,10 @@
                 </div>
             </div>
         </div>
+        <!-- No Meals Available -->
+        <div *ngIf="!breakfast && !lunch && !snack && !dinner" class="text-center text-gray-500 mt-6 text-lg">
+            No meals available today.
+        </div>
     </div>
 
-    <!-- Show Next Meals Button -->
-    <!-- <div class="mt-6 text-right">
-        <button class="bg-black text-white px-4 py-2 rounded-lg hover:bg-custom/90" (click)="toggleFutureMeals()">
-            {{ showFutureMeals ? 'Hide Future Meals' : 'Show Next Meals' }}
-        </button>
-    </div> -->
-
-    <!-- Future Meals Section -->
-    <!-- <div *ngIf="showFutureMeals" class="mt-6">
-        <h3 class="text-xl font-semibold mb-4">Upcoming Meals</h3>
-        <div class="space-y-3">
-            <div *ngFor="let meal of recipes" class="p-4 border rounded-lg flex items-center gap-4">
-                <img [src]="meal.image" class="w-14 h-14 rounded object-cover" />
-                <div>
-                    <h4 class="font-medium">{{ meal.name }}</h4>
-                    <p class="text-sm text-gray-500">{{ meal.date }} - {{ meal.time }}</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>

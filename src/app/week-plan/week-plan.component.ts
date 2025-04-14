@@ -22,6 +22,10 @@ export class WeekPlanComponent implements OnInit {
   weekKeys = Object.keys(this.week);
 
   async ngOnInit(): Promise<void> {
+    const existing = localStorage.getItem('recipes');
+    if (existing) {
+      this.recipes = JSON.parse(existing);
+    }
     await this.loadWeekMeals();
   }
 
@@ -31,8 +35,6 @@ export class WeekPlanComponent implements OnInit {
       const storedMeal = localStorage.getItem(day + '_recipie');
       this.week[day] = storedMeal ? JSON.parse(storedMeal) : ''; // Assign meal data if found, otherwise keep it empty
     });
-
-    console.log('Loaded Week Meals:', this.week);
   }
 
   addWeekMeal(day: string) {
@@ -41,7 +43,6 @@ export class WeekPlanComponent implements OnInit {
   }
 
   confirmAction(data: any) {
-    console.log('model data == ', data);
     if (data.confirm == true) {
       let selectedRecipe = this.recipes.find(
         (recipe: any) => recipe.id === data.mealId

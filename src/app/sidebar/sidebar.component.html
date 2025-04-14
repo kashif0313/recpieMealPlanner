@@ -2,26 +2,32 @@
     <div class="p-6">
         <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" class="h-8 mb-8" />
         <nav>
-            <a [routerLink]="['/']"
-                class="flex items-center space-x-3 text-custom font-medium p-3 rounded-lg bg-red-50 mb-2">
+            <a [routerLink]="['/']" routerLinkActive="bg-black text-white" [routerLinkActiveOptions]="{ exact: true }"
+                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a [routerLink]="['/myRecipie']"
-                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2">
+
+            <a [routerLink]="['/myRecipie']" routerLinkActive="bg-black text-white"
+                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
                 <i class="fas fa-book"></i>
                 <span>My Recipes</span>
             </a>
-            <a [routerLink]="['/dietPlan']"
-                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2"><i
-                    class="fas fa-utensils"></i><span>Special Diet Plans</span></a>
-            <a [routerLink]="['/shoppingList']"
-                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50 mb-2">
+
+            <a [routerLink]="['/dietPlan']" routerLinkActive="bg-black text-white"
+                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
+                <i class="fas fa-utensils"></i>
+                <span>Special Diet Plans</span>
+            </a>
+
+            <a [routerLink]="['/shoppingList']" routerLinkActive="bg-black text-white"
+                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Shopping List</span>
             </a>
-            <a [routerLink]="['/favourites']"
-                class="flex items-center space-x-3 text-gray-600 font-medium p-3 rounded-lg hover:bg-gray-50">
+
+            <a [routerLink]="['/favourites']" routerLinkActive="bg-black text-white"
+                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 transition">
                 <i class="fas fa-heart"></i>
                 <span>Favorites</span>
             </a>

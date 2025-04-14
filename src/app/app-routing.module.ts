@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'myRecipie', component: MyRecipeComponent },
   { path: 'addRecipie', component: AddMealComponent },
+  { path: 'addDietPlan/:object', component: AddDietPlanComponent },
   // { path: 'mealPlans', component: MyRecipeComponent },
   { path: 'shoppingList', component: ShoppingListComponent },
   { path: 'recipeDetail/:object', component: RecipeDetailComponent },

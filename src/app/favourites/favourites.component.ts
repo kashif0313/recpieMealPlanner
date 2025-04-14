@@ -26,7 +26,6 @@ export class FavouritesComponent {
     );
   }
   listenFavChange(data: any) {
-    console.log('fav removed', data);
     this.router.navigate(['favourites']);
   }
 }

@@ -24,7 +24,6 @@ export class ShoppingListComponent implements OnInit {
     const savedLists = JSON.parse(
       localStorage.getItem('shoppingLists') || '[]'
     );
-    console.log('Saved lists from storage:', savedLists);
 
     if (savedLists.length > 0) {
       // Loop through each recipe and separate its items into toBuy and bought lists
@@ -37,9 +36,6 @@ export class ShoppingListComponent implements OnInit {
         this.toBuyList.push(...toBuy);
         this.boughtList.push(...bought);
       });
-
-      console.log('To Buy List:', this.toBuyList);
-      console.log('Bought List:', this.boughtList);
     }
   }
 
