@@ -115,7 +115,7 @@ export const predefinedRecipes = [
     serving: 1,
     category: 'Snack',
     image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fnomoneynotime.com.au%2Fhealthy-easy-recipes%2Fchoc-banana-and-oat-smoothie&psig=AOvVaw1IF7rOR9qa3a0e6yBqOUdt&ust=1743963295783000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJC83ti_wYwDFQAAAAAdAAAAABAE',
+      'https://images.eatthismuch.com/med/42556_tabitharwheeler_c1046f3d-8648-4c61-9730-6f9c7d300a31.jpg',
     ingredients: [
       { name: 'banana', qty: 1, unit: 'piece' },
       { name: 'oats', qty: 0.25, unit: 'cup' },
@@ -133,6 +133,272 @@ export const predefinedRecipes = [
       protein: 10.6,
       fat: 4.9,
       carbs: 53.8,
+    },
+  },
+  {
+    id: 'ENR004',
+    name: 'Peanut Butter Energy Bites',
+    prepTime: 10,
+    difficulty: 'Easy',
+    serving: 4,
+    category: 'Snack',
+    image:
+      'https://joyfoodsunshine.com/wp-content/uploads/2021/07/peanut-butter-energy-balls-1-500x375.jpg',
+    ingredients: [
+      {
+        name: 'rolled oats',
+        qty: 1,
+        unit: 'cup',
+      },
+      {
+        name: 'peanut butter',
+        qty: 0.5,
+        unit: 'cup',
+      },
+      {
+        name: 'honey',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'chocolate chips',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'chia seeds',
+        qty: 1,
+        unit: 'tbsp',
+      },
+    ],
+    instructions:
+      'Mix all ingredients in a bowl.\nForm into small balls.\nRefrigerate for 30 minutes before serving.',
+    nutrition: {
+      calories: 220,
+      protein: 6,
+      fat: 12,
+      carbs: 25,
+    },
+  },
+  {
+    id: 'SLD005',
+    name: 'Grilled Chicken Salad',
+    prepTime: 15,
+    difficulty: 'Medium',
+    serving: 2,
+    category: 'Snack',
+    image:
+      'https://www.slenderkitchen.com/sites/default/files/styles/gsd-16x9/public/recipe_images/grilled-chicken-Greek-salad.jpg',
+    ingredients: [
+      {
+        name: 'chicken breast',
+        qty: 1,
+        unit: 'piece',
+      },
+      {
+        name: 'lettuce',
+        qty: 2,
+        unit: 'cup',
+      },
+      {
+        name: 'tomatoes',
+        qty: 0.5,
+        unit: 'cup',
+      },
+      {
+        name: 'olive oil',
+        qty: 1,
+        unit: 'tbsp',
+      },
+      {
+        name: 'balsamic vinegar',
+        qty: 1,
+        unit: 'tbsp',
+      },
+    ],
+    instructions:
+      'Grill chicken until cooked.\nChop veggies and mix in a bowl.\nSlice chicken and top the salad. Drizzle dressing.',
+    nutrition: {
+      calories: 320,
+      protein: 30,
+      fat: 15,
+      carbs: 10,
+    },
+  },
+
+  {
+    id: 'BRK006',
+    name: 'Classic Veggie Omelette',
+    prepTime: 7,
+    difficulty: 'Easy',
+    serving: 1,
+    category: 'Breakfast',
+    image:
+      'https://www.liveeatlearn.com/wp-content/uploads/2020/12/vegetarian-denver-omelette-7.jpg',
+    ingredients: [
+      {
+        name: 'eggs',
+        qty: 2,
+        unit: 'piece',
+      },
+      {
+        name: 'bell pepper',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'onion',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'spinach',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'cheddar cheese',
+        qty: 2,
+        unit: 'tbsp',
+      },
+    ],
+    instructions:
+      'Beat eggs and pour into heated pan.\nAdd veggies and cheese.\nFold and cook until done.',
+    nutrition: {
+      calories: 250,
+      protein: 18,
+      fat: 18,
+      carbs: 5,
+    },
+  },
+  {
+    id: 'BRK007',
+    name: 'Avocado Toast',
+    prepTime: 5,
+    difficulty: 'Easy',
+    serving: 1,
+    category: 'Breakfast',
+    image:
+      'https://californiaavocado.com/wp-content/uploads/2020/07/California-Avocado-Toast-Three-Ways.jpeg',
+    ingredients: [
+      {
+        name: 'whole grain bread',
+        qty: 1,
+        unit: 'slice',
+      },
+      {
+        name: 'avocado',
+        qty: 0.5,
+        unit: 'piece',
+      },
+      {
+        name: 'lemon juice',
+        qty: 0.5,
+        unit: 'tsp',
+      },
+      {
+        name: 'salt',
+        qty: 1,
+        unit: 'pinch',
+      },
+      {
+        name: 'chili flakes',
+        qty: 1,
+        unit: 'pinch',
+      },
+    ],
+    instructions:
+      'Toast the bread.\nMash avocado with lemon, salt, and chili flakes.\nSpread on toast and serve.',
+    nutrition: {
+      calories: 190,
+      protein: 4,
+      fat: 11,
+      carbs: 18,
+    },
+  },
+  {
+    id: 'DIN008',
+    name: 'Chickpea Veggie Stir-Fry',
+    prepTime: 20,
+    difficulty: 'Medium',
+    serving: 2,
+    category: 'Dinner',
+    image:
+      'https://glutenfreegoddessrecipes.com/wp-content/uploads/2024/09/chickpea-vegetable-stir-fry-recipe-1725849272.jpg',
+    ingredients: [
+      {
+        name: 'chickpeas',
+        qty: 1,
+        unit: 'cup',
+      },
+      {
+        name: 'broccoli',
+        qty: 1,
+        unit: 'cup',
+      },
+      {
+        name: 'carrot',
+        qty: 1,
+        unit: 'piece',
+      },
+      {
+        name: 'soy sauce',
+        qty: 2,
+        unit: 'tbsp',
+      },
+      {
+        name: 'olive oil',
+        qty: 1,
+        unit: 'tbsp',
+      },
+    ],
+    instructions:
+      'Heat oil in a pan.\nAdd vegetables and stir-fry.\nAdd chickpeas and soy sauce. Cook for 5 more mins.',
+    nutrition: {
+      calories: 340,
+      protein: 14,
+      fat: 10,
+      carbs: 48,
+    },
+  },
+  {
+    id: 'DST009',
+    name: 'Greek Yogurt Parfait',
+    prepTime: 5,
+    difficulty: 'Easy',
+    serving: 1,
+    category: 'Dinner',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS4F8Sz__Z7rjxfXxc70a9sNVSe6uMrR1B27TZ5uLOoQ&s&ec=72940544',
+    ingredients: [
+      {
+        name: 'greek yogurt',
+        qty: 0.75,
+        unit: 'cup',
+      },
+      {
+        name: 'granola',
+        qty: 0.25,
+        unit: 'cup',
+      },
+      {
+        name: 'mixed berries',
+        qty: 0.5,
+        unit: 'cup',
+      },
+      {
+        name: 'honey',
+        qty: 1,
+        unit: 'tsp',
+      },
+    ],
+    instructions:
+      'Layer yogurt, berries, and granola in a glass.\nDrizzle honey on top.\nServe immediately.',
+    nutrition: {
+      calories: 240,
+      protein: 13,
+      fat: 6,
+      carbs: 32,
     },
   },
 ];

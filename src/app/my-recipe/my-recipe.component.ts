@@ -10,7 +10,7 @@ export class MyRecipeComponent {
   recipes: any[] = [];
   filteredRecipes: any[] = [];
   selectedCategory = 'All';
-  categories = ['All', 'Breakfast', 'Lunch', 'Dinner']; // Category list
+  categories = ['All', 'Breakfast', 'Lunch', 'Snack', 'Dinner']; // Category list
   gridView: boolean = true;
 
   async ngOnInit(): Promise<void> {

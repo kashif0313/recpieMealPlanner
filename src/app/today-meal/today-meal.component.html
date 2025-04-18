@@ -21,6 +21,7 @@
             </div>
             <div>
                 <h3 class="font-medium mb-2 cursor-pointer" (click)="openDetails('Breakfast')">Breakfast - 8:00 AM</h3>
+                <span class="text-blue-500 cursor-pointer" (click)="openDetails('Breakfast')">View Detail</span>
                 <div class="flex items-center space-x-2">
                     <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
                         [popupData]="popupData"></app-today-meal-details>
@@ -32,6 +33,7 @@
             <div class="bg-blue-50 p-3 rounded-lg"><i class="fas fa-cloud-sun text-blue-500"></i></div>
             <div>
                 <h3 class="font-medium mb-2" (click)="openDetails('Lunch')">Lunch - 1:00 PM</h3>
+                <span class="text-blue-500 cursor-pointer" (click)="openDetails('Lunch')">View Detail</span>
                 <div class="flex items-center space-x-2">
                     <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
                         [popupData]="popupData"></app-today-meal-details>
@@ -43,6 +45,7 @@
             <div class="bg-blue-50 p-3 rounded-lg"><i class="fa fa-cookie text-green-500"></i></div>
             <div>
                 <h3 class="font-medium mb-2" (click)="openDetails('Snack')">Snack - 3:00 PM</h3>
+                <span class="text-blue-500 cursor-pointer" (click)="openDetails('Snack')">View Detail</span>
                 <div class="flex items-center space-x-2">
                     <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
                         [popupData]="popupData"></app-today-meal-details>
@@ -54,6 +57,7 @@
             <div class="bg-indigo-50 p-3 rounded-lg"><i class="fas fa-moon text-indigo-500"></i></div>
             <div>
                 <h3 class="font-medium mb-2" (click)="openDetails('Dinner')">Dinner - 7:00 PM</h3>
+                <span class="text-blue-500 cursor-pointer" (click)="openDetails('Dinner')">View Detail</span>
                 <div class="flex items-center space-x-2">
                     <app-today-meal-details *ngIf="openModelPopup" (confirmAction)="closePopup()"
                         [popupData]="popupData"></app-today-meal-details>

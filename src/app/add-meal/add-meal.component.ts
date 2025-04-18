@@ -91,13 +91,11 @@ export class AddMealComponent implements OnInit {
     this.cropModal = true;
   }
   imageCropped(event: ImageCroppedEvent) {
-    console.log('image before == ', this.imagePreview);
     if (event.objectUrl) {
       this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(
         event.objectUrl
       );
     }
-    console.log('image == ', this.imagePreview);
   }
 
   confirmCrop() {
@@ -132,8 +130,7 @@ export class AddMealComponent implements OnInit {
   }
   // Save the recipe (submit form)
   saveRecipe() {
-    this.recipe.image = this.imagePreview;
-
+    this.recipe.image = this.imagePreview.changingThisBreaksApplicationSecurity;
     // Nutrition totals
     let totalCalories = 0;
     let totalProtein = 0;
@@ -141,8 +138,15 @@ export class AddMealComponent implements OnInit {
     let totalCarbs = 0;
 
     // Shopping list initialization
-    let shoppingList: { name: string; qty: number | null; unit: string }[] = [];
-
+    let shoppingList: {
+      name: string;
+      qty: number | null;
+      unit: string;
+      bought: boolean;
+    }[] = [];
+    const savedShoppingLists = JSON.parse(
+      localStorage.getItem('shoppingLists') || '[]'
+    );
     this.recipe.ingredients.forEach((ingredient: any) => {
       const key = ingredient.name
         .toLowerCase()
@@ -190,6 +194,7 @@ export class AddMealComponent implements OnInit {
           name: ingredient.name,
           qty: ingredient.qty,
           unit: ingredient.unit,
+          bought: false,
         });
       }
     });
@@ -210,13 +215,10 @@ export class AddMealComponent implements OnInit {
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
 
     // Save the shopping list in localStorage
-    const savedShoppingLists = JSON.parse(
-      localStorage.getItem('shoppingLists') || '[]'
-    );
-    savedShoppingLists.push({
-      recipeName: this.recipe.name,
-      list: shoppingList,
-    });
+    shoppingList.forEach((item) => savedShoppingLists.push(item));
+    // savedShoppingLists.push({
+    //   shoppingList,
+    // });
     localStorage.setItem('shoppingLists', JSON.stringify(savedShoppingLists));
 
     this.router.navigate(['/']);

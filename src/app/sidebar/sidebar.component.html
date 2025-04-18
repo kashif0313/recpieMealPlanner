@@ -1,36 +1,50 @@
-<aside class="w-full md:w-64 bg-white shadow-lg md:fixed h-auto md:h-full z-50">
-    <div class="p-6">
-        <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" class="h-8 mb-8" />
-        <nav>
-            <a [routerLink]="['/']" routerLinkActive="bg-black text-white" [routerLinkActiveOptions]="{ exact: true }"
-                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-
-            <a [routerLink]="['/myRecipie']" routerLinkActive="bg-black text-white"
-                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
-                <i class="fas fa-book"></i>
-                <span>My Recipes</span>
-            </a>
-
-            <a [routerLink]="['/dietPlan']" routerLinkActive="bg-black text-white"
-                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
-                <i class="fas fa-utensils"></i>
-                <span>Special Diet Plans</span>
-            </a>
-
-            <a [routerLink]="['/shoppingList']" routerLinkActive="bg-black text-white"
-                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Shopping List</span>
-            </a>
-
-            <a [routerLink]="['/favourites']" routerLinkActive="bg-black text-white"
-                class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 transition">
-                <i class="fas fa-heart"></i>
-                <span>Favorites</span>
-            </a>
-        </nav>
+<aside [ngClass]="{ 'w-20': collapsed, 'w-full md:w-64': !collapsed }"
+    class="bg-white shadow-lg md:fixed h-auto md:h-full z-50 transition-all duration-300">
+    <div class="p-4 flex justify-between items-center">
+        <!-- <img *ngIf="!collapsed" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo"
+            class="h-8" /> -->
+        <h3 class="text-3xl font-bold">Recpie Meal Planner</h3>
+        <button (click)="toggleSidebar()"
+            class="text-gray-500 hover:text-gray-800 focus:outline-none text-xl ml-auto md:ml-0">
+            <i class="fas" [ngClass]="collapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
+        </button>
     </div>
+
+    <nav class="p-2 pt-0">
+        <a [routerLink]="['/']" routerLinkActive="bg-black text-white" [routerLinkActiveOptions]="{ exact: true }"
+            class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition"
+            [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
+            <i class="fas fa-home"></i>
+            <span *ngIf="!collapsed">Home</span>
+        </a>
+
+
+        <a [routerLink]="['/myRecipie']" routerLinkActive="bg-black text-white"
+            class="flex items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition"
+            [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
+            <i class="fas fa-book"></i>
+            <span *ngIf="!collapsed">My Recipes</span>
+        </a>
+
+        <a [routerLink]="['/dietPlan']" routerLinkActive="bg-black text-white"
+            class="flex items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition"
+            [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
+            <i class="fas fa-utensils"></i>
+            <span *ngIf="!collapsed">Special Diet Plans</span>
+        </a>
+
+        <a [routerLink]="['/shoppingList']" routerLinkActive="bg-black text-white"
+            class="flex items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition"
+            [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
+            <i class="fas fa-shopping-cart"></i>
+            <span *ngIf="!collapsed">Shopping List</span>
+        </a>
+
+        <a [routerLink]="['/favourites']" routerLinkActive="bg-black text-white"
+            class="flex items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 transition"
+            [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
+            <i class="fas fa-heart"></i>
+            <span *ngIf="!collapsed">Favorites</span>
+        </a>
+    </nav>
 </aside>

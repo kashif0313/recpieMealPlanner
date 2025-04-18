@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { predefinedIngredients } from '../helper/shoppingList';
 
 @Component({
   selector: 'app-shopping-list',
@@ -19,23 +20,30 @@ export class ShoppingListComponent implements OnInit {
     // Initialize filtered ingredients with all keys in nutrientDatabase
     await this.loadShoppingList();
   }
-
   loadShoppingList() {
     const savedLists = JSON.parse(
       localStorage.getItem('shoppingLists') || '[]'
     );
 
-    if (savedLists.length > 0) {
-      // Loop through each recipe and separate its items into toBuy and bought lists
-      savedLists.forEach((recipe: any) => {
-        // Filter the list of items into toBuyList and boughtList based on 'bought' status
-        const toBuy = recipe.list.filter((item: any) => !item.bought);
-        const bought = recipe.list.filter((item: any) => item.bought);
+    if (!savedLists || savedLists.length === 0) {
+      // If no items in localStorage, use predefined and store them
+      localStorage.setItem(
+        'shoppingLists',
+        JSON.stringify(predefinedIngredients)
+      );
 
-        // Optionally, you can store these lists in a more structured way
-        this.toBuyList.push(...toBuy);
-        this.boughtList.push(...bought);
-      });
+      const toBuy = predefinedIngredients.filter((item: any) => !item.bought);
+      const bought = predefinedIngredients.filter((item: any) => item.bought);
+
+      this.toBuyList.push(...toBuy);
+      this.boughtList.push(...bought);
+    } else {
+      // savedLists is already an array of shopping items
+      const toBuy = savedLists.filter((item: any) => item.bought !== true);
+      const bought = savedLists.filter((item: any) => item.bought === true);
+
+      this.toBuyList.push(...toBuy);
+      this.boughtList.push(...bought);
     }
   }
 
