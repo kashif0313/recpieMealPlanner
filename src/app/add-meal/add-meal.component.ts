@@ -130,6 +130,36 @@ export class AddMealComponent implements OnInit {
   }
   // Save the recipe (submit form)
   saveRecipe() {
+    // Validation
+    if (!this.recipe.name.trim()) {
+      alert('Please enter a recipe name.');
+      return;
+    }
+
+    if (this.recipe.prepTime === null || this.recipe.prepTime <= 0) {
+      alert('Please enter a valid preparation time.');
+      return;
+    }
+
+    if (!this.recipe.category.trim()) {
+      alert('Please select a category.');
+      return;
+    }
+
+    if (!this.recipe.image.trim()) {
+      alert('Please upload an image.');
+      return;
+    }
+
+    if (this.recipe.ingredients.length === 0) {
+      alert('Please add at least one ingredient.');
+      return;
+    }
+
+    if (!this.recipe.instructions.trim()) {
+      alert('Please enter the instructions.');
+      return;
+    }
     this.recipe.image = this.imagePreview.changingThisBreaksApplicationSecurity;
     // Nutrition totals
     let totalCalories = 0;
@@ -209,10 +239,17 @@ export class AddMealComponent implements OnInit {
       carbs: +(totalCarbs / servings).toFixed(1),
     };
 
-    // Store recipe in localStorage
+    // Passed validation, now save
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
     savedRecipes.push(this.recipe);
     localStorage.setItem('recipes', JSON.stringify(savedRecipes));
+
+    alert('Recipe saved successfully!');
+
+    // // Store recipe in localStorage
+    // const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
+    // savedRecipes.push(this.recipe);
+    // localStorage.setItem('recipes', JSON.stringify(savedRecipes));
 
     // Save the shopping list in localStorage
     shoppingList.forEach((item) => savedShoppingLists.push(item));

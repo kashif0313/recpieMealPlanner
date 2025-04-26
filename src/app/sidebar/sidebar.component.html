@@ -1,16 +1,18 @@
 <aside [ngClass]="{ 'w-20': collapsed, 'w-full md:w-64': !collapsed }"
-    class="bg-white shadow-lg md:fixed h-auto md:h-full z-50 transition-all duration-300">
+    class="bg-white shadow-lg md:fixed h-auto md:h-full z-50 transition-all duration-300 overflow-hidden">
     <div class="p-4 flex justify-between items-center">
         <!-- <img *ngIf="!collapsed" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo"
             class="h-8" /> -->
-        <h3 class="text-3xl font-bold">Recpie Meal Planner</h3>
+        <img src="https://img.icons8.com/?size=100&id=20441&format=png&color=000000" class="h-10 w-10" alt="">
+
         <button (click)="toggleSidebar()"
             class="text-gray-500 hover:text-gray-800 focus:outline-none text-xl ml-auto md:ml-0">
             <i class="fas" [ngClass]="collapsed ? 'fa-chevron-right' : 'fa-chevron-left'"></i>
         </button>
     </div>
-
-    <nav class="p-2 pt-0">
+    <h3 class="text-2xl font-bold px-4" [ngClass]="{ 'text-1xl': collapsed, 'text-2xl': !collapsed }">Recpie Meal
+        Planner</h3>
+    <nav class="p-2 pt-10">
         <a [routerLink]="['/']" routerLinkActive="bg-black text-white" [routerLinkActiveOptions]="{ exact: true }"
             class="flex items-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition"
             [ngClass]="collapsed ? 'justify-center' : 'justify-start'">
