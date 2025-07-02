@@ -130,6 +130,8 @@ export class AddMealComponent implements OnInit {
   }
   // Save the recipe (submit form)
   saveRecipe() {
+    this.recipe.image = this.imagePreview.changingThisBreaksApplicationSecurity;
+    console.log('recipie == ', this.recipe);
     // Validation
     if (!this.recipe.name.trim()) {
       alert('Please enter a recipe name.');
@@ -160,7 +162,6 @@ export class AddMealComponent implements OnInit {
       alert('Please enter the instructions.');
       return;
     }
-    this.recipe.image = this.imagePreview.changingThisBreaksApplicationSecurity;
     // Nutrition totals
     let totalCalories = 0;
     let totalProtein = 0;
