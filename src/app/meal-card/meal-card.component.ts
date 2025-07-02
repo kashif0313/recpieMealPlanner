@@ -22,8 +22,10 @@ export class MealCardComponent implements OnInit {
 
   @Output() favToggle: EventEmitter<{
     toggle: boolean;
+    data: any;
   }> = new EventEmitter<{
     toggle: boolean;
+    data: any;
   }>();
 
   constructor(private router: Router) {}
@@ -53,12 +55,18 @@ export class MealCardComponent implements OnInit {
       // Already exists – remove it
       existingFavourites.splice(mealIndex, 1);
       this.favourite = false;
-      this.favToggle.emit({ toggle: false });
+      this.favToggle.emit({
+        toggle: false,
+        data: JSON.stringify(existingFavourites),
+      });
     } else {
       // Not in favourites – add it
       existingFavourites.push(this.mealData.id);
       this.favourite = true;
-      this.favToggle.emit({ toggle: true });
+      this.favToggle.emit({
+        toggle: true,
+        data: JSON.stringify(existingFavourites),
+      });
     }
 
     this.myFavourites = existingFavourites;

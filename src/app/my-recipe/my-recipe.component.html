@@ -1,5 +1,16 @@
 <div class="max-w-7xl mx-auto px-6 py-8">
-    <h1 class="text-2xl font-semibold mb-6">My Recipes</h1>
+    <div class="flex justify-between items-center w-full">
+        <div>
+            <h1 class="text-2xl font-semibold mb-6">My Recipes</h1>
+        </div>
+        <div class="flex space-x-4"><button [ngClass]="{'bg-black text-white':gridView}"
+                class="border border-gray-200 p-2 rounded-lg" (click)="changeGridView()"><i
+                    [ngClass]="{'text-white':gridView}" class="fas fa-th-large text-gray-600"></i></button><button
+                [ngClass]="{'bg-black text-white':!gridView}" (click)="changeListingView()"
+                class="border border-gray-200 p-2 rounded-lg"><i [ngClass]="{'text-white':!gridView}"
+                    class="fas fa-list text-gray-600"></i>
+            </button></div>
+    </div>
     <div class="flex justify-between items-center mb-6">
         <div class="flex space-x-4">
             <button *ngFor="let category of categories" (click)="filterListing(category)"
@@ -8,10 +19,7 @@
                 {{ category }}
             </button>
         </div>
-        <div class="flex space-x-4"><button class="border border-gray-200 p-2 rounded-lg" (click)="changeGridView()"><i
-                    class="fas fa-th-large text-gray-600"></i></button><button (click)="changeListingView()"
-                class="border border-gray-200 p-2 rounded-lg"><i class="fas fa-list text-gray-600"></i>
-            </button></div>
+
     </div>
     <div>
         <div *ngIf="recipes.length > 0; else noRecipes">

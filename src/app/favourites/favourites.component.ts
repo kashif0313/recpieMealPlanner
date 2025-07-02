@@ -14,18 +14,24 @@ export class FavouritesComponent {
     this.loadFavouritesFromRecipes(); // now you have full objects of favorite meals
   }
 
-  loadFavouritesFromRecipes() {
-    const favouriteIds: string[] = JSON.parse(
+  loadFavouritesFromRecipes(newData?: any) {
+    console.log('loading new data');
+    let favouriteIds: string[] = JSON.parse(
       localStorage.getItem('favourites') || '[]'
     );
+    if (newData) {
+      favouriteIds = newData;
+    }
     const savedRecipes = JSON.parse(localStorage.getItem('recipes') || '[]');
 
     // Get full objects of the favorite meals
     this.favouriteMeals = savedRecipes.filter((meal: any) =>
       favouriteIds.includes(meal.id)
     );
+    console.log('fav meal == ', this.favouriteMeals);
   }
   listenFavChange(data: any) {
-    this.router.navigate(['favourites']);
+    console.log('fav ==', data);
+    this.loadFavouritesFromRecipes(data.data);
   }
 }

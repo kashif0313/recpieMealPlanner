@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { predefinedRecipes } from '../helper/recipies';
 import { Router } from '@angular/router';
 
@@ -45,6 +54,11 @@ export class HeaderComponent implements OnInit {
       this.recipes = this.savedRecipes;
     }
   }
+  isMobileSearchActive = false;
+
+  toggleMobileSearch() {
+    this.isMobileSearchActive = !this.isMobileSearchActive;
+  }
 
   searchRecipes() {
     sessionStorage.setItem('searchQuery', this.searchQuery);
@@ -65,10 +79,25 @@ export class HeaderComponent implements OnInit {
     sessionStorage.setItem('searchQuery', recipe.name);
     this.router.navigate(['/recipeDetail', recipe.id]);
     this.filteredResults = [];
+    this.isMobileSearchActive = false;
   }
   clearSearch() {
     this.searchQuery = '';
     this.filteredResults = [];
     sessionStorage.removeItem('searchQuery');
+    this.isMobileSearchActive = false;
+  }
+
+  @ViewChild('searchContainer') searchContainer!: ElementRef;
+
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: Event) {
+    if (
+      this.isMobileSearchActive &&
+      this.searchContainer &&
+      !this.searchContainer.nativeElement.contains(event.target)
+    ) {
+      this.isMobileSearchActive = false;
+    }
   }
 }

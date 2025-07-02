@@ -23,6 +23,7 @@ import { DietPlanDetailsComponent } from './diet-plan-details/diet-plan-details.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodayMealComponent } from './today-meal/today-meal.component';
 import { TodayMealDetailsComponent } from './today-meal-details/today-meal-details.component';
+import { MobileNavigationComponent } from './mobile-navigation/mobile-navigation.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { TodayMealDetailsComponent } from './today-meal-details/today-meal-detai
     DietPlanDetailsComponent,
     TodayMealComponent,
     TodayMealDetailsComponent,
+    MobileNavigationComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,43 @@
+<button (click)="toggleSidebar()" class=" text-gray-500 hover:text-gray-800 focus:outline-none text-xl ml-auto md:ml-0">
+    <i class="fas " [ngClass]="collapsed ? 'fa-bars' : 'fa-times'"></i>
+</button>
+<aside [ngClass]="{
+    'max-h-0 overflow-hidden': collapsed,
+    'max-h-screen': !collapsed
+  }" class="bg-white w-full shadow-lg fixed top-12 left-0  transition-all duration-500 ease-in-out">
+    <div class="p-4 flex justify-between items-center">
+    </div>
+    <nav class="p-2">
+        <a [routerLink]="['/']" (click)="closeSidebar()" routerLinkActive="bg-black text-white"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="flex flex-nowrap items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+
+
+        <a [routerLink]="['/myRecipie']" (click)="closeSidebar()" routerLinkActive="bg-black text-white"
+            class="flex flex-nowrap items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
+            <i class="fas fa-book"></i>
+            <span>My Recipes</span>
+        </a>
+
+        <a [routerLink]="['/dietPlan']" (click)="closeSidebar()" routerLinkActive="bg-black text-white"
+            class="flex flex-nowrap items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
+            <i class="fas fa-utensils"></i>
+            <span>Special Diet Plans</span>
+        </a>
+
+        <a [routerLink]="['/shoppingList']" (click)="closeSidebar()" routerLinkActive="bg-black text-white"
+            class="flex flex-nowrap items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 mb-2 transition">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Shopping List</span>
+        </a>
+
+        <a [routerLink]="['/favourites']" (click)="closeSidebar()" routerLinkActive="bg-black text-white"
+            class="flex flex-nowrap items-center justify-center space-x-3 font-medium p-3 rounded-lg hover:bg-gray-100 transition">
+            <i class="fas fa-heart"></i>
+            <span>Favorites</span>
+        </a>
+    </nav>
+</aside>

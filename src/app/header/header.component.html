@@ -1,48 +1,64 @@
-<header class="bg-white shadow-sm fixed top-0 right-0 z-10 px-4 sm:px-6 transition-all duration-300"
-    [ngClass]="collapsed ? 'w-[calc(100%-5rem)]' : 'w-[calc(100%-16rem)]'">
+<header class="bg-white shadow-sm w-full md:w-9/10 fixed top-0 right-0 z-10 px-4 sm:px-6 transition-all duration-300"
+    [ngClass]="collapsed ? 'md:w-[calc(100%-5rem)]' : 'md:w-[calc(100%-16rem)]'">
 
     <div class="max-w-full mx-auto py-3 flex items-center justify-between">
 
-        <!-- Search Bar on the Left -->
-        <div class="relative w-full max-w-md">
-            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            <div class="relative w-full max-w-md">
-                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input type="text" placeholder="Search recipes..." [(ngModel)]="searchQuery" (input)="searchRecipes()"
-                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                <!-- Close Button -->
-                <button *ngIf="searchQuery" (click)="clearSearch()"
-                    class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
-                    &times;
-                </button>
-                <!-- Dropdown -->
-                <ul *ngIf="searchQuery && filteredResults.length > 0"
-                    class="absolute z-20 bg-white w-full border border-gray-300 rounded-md mt-1 shadow-lg max-h-60 overflow-auto">
-                    <li *ngFor="let recipe of filteredResults" class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                        (click)="selectRecipe(recipe)">
-                        {{ recipe.name }}
-                    </li>
-                </ul>
+        <!-- 🔹 LEFT: Mobile menu + Title -->
+        <div class="flex items-center space-x-3">
+            <div class="md:hidden flex items-center space-x-2">
+                <app-mobile-navigation></app-mobile-navigation>
+                <span class="font-semibold text-gray-800">Recpie Meal Planner</span>
+            </div>
+        </div>
 
-                <!-- Optional: No match message -->
-                <div *ngIf="searchQuery && filteredResults.length === 0"
-                    class="absolute z-20 bg-white w-full border border-gray-300 rounded-md mt-1 shadow-md px-4 py-2 text-sm text-gray-500">
-                    No recipes found.
+        <!-- 🔸 RIGHT: Search bar and add button -->
+        <div class="flex items-center space-x-3">
+            <!-- Search Container -->
+            <div class="relative" #searchContainer>
+
+                <!-- 🔍 Mobile Search Icon -->
+                <button class="md:hidden text-gray-500 text-xl" (click)="toggleMobileSearch()"
+                    *ngIf="!isMobileSearchActive">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                <!-- 🔎 Search Input -->
+                <div class="relative mt-2 md:mt-0" [ngClass]="{ 'hidden md:block': !isMobileSearchActive }">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+
+                    <input type="text" placeholder="Search recipes..." [(ngModel)]="searchQuery"
+                        (input)="searchRecipes()"
+                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+
+                    <!-- ❌ Clear Button -->
+                    <button *ngIf="searchQuery" (click)="clearSearch()"
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                        &times;
+                    </button>
+
+                    <!-- 🔽 Dropdown List -->
+                    <ul *ngIf="searchQuery && filteredResults.length > 0"
+                        class="absolute z-20 bg-white w-full border border-gray-300 rounded-md mt-1 shadow-lg max-h-60 overflow-auto">
+                        <li *ngFor="let recipe of filteredResults" class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            (click)="selectRecipe(recipe)">
+                            {{ recipe.name }}
+                        </li>
+                    </ul>
+
+                    <!-- 😢 No Match -->
+                    <div *ngIf="searchQuery && filteredResults.length === 0"
+                        class="absolute z-20 bg-white w-full border border-gray-300 rounded-md mt-1 shadow-md px-4 py-2 text-sm text-gray-500">
+                        No recipes found.
+                    </div>
                 </div>
             </div>
 
-        </div>
-
-        <!-- Action Buttons on the Right -->
-        <div class="flex items-center space-x-3">
-            <!-- <button class="bg-gray-100 p-2 rounded-md hover:bg-gray-200 flex items-center justify-center w-10 h-10">
-                <i class="fas fa-filter text-gray-600"></i>
-            </button> -->
+            <!-- ➕ Add Button -->
             <button class="bg-black text-white px-4 py-2 rounded-md flex items-center hover:bg-gray-900"
                 [routerLink]="['/addRecipie']">
-                <i class="fas fa-plus mr-2"></i> Add Recipe
+                <i class="fas fa-plus mr-2"></i>
+                <span class="hidden sm:inline">Add</span>
             </button>
-
         </div>
 
     </div>

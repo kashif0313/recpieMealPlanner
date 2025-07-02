@@ -1,4 +1,5 @@
-<div class="bg-white rounded-lg shadow-sm overflow-hidden relative" style="max-width:220px;">
+<div class="bg-white rounded-lg shadow-sm overflow-hidden relative max-w-[180px] md:max-w-[220px]">
+
     <!-- Radio Button (Top-Left) -->
 
 
@@ -13,7 +14,7 @@
             </button>
 
         </div>
-        <div class="flex items-center text-sm text-gray-500 space-x-4" (click)="openDetails()">
+        <div class="flex flex-wrap items-center text-sm text-gray-500 space-x-4" (click)="openDetails()">
             <span><i class="far fa-clock mr-1"></i> {{ mealData.prepTime }} mins</span>
             <span><i class="fas fa-utensils mr-1"></i> {{ mealData.difficulty }}</span>
             <span><i class="fas fa-fire mr-1"></i> {{ mealData.nutrition.calories }}cal</span>

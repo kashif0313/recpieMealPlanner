@@ -1,15 +1,15 @@
 <div class="flex h-screen">
   <!-- Sidebar -->
-  <app-sidebar [collapsed]="isSidebarCollapsed" (toggle)="onSidebarToggle($event)"></app-sidebar>
+  <app-sidebar class="hidden md:flex" [collapsed]="isSidebarCollapsed" (toggle)="onSidebarToggle($event)"></app-sidebar>
 
   <!-- Main Content Wrapper -->
-  <div [ngClass]="isSidebarCollapsed ? 'ml-20' : 'ml-64'" class="flex-1 transition-all duration-300">
+  <div [ngClass]="isSidebarCollapsed ? 'md:ml-20' : 'md:ml-64'" class="flex-1 transition-all duration-300">
     <!-- Header -->
     <app-header [collapsed]="isSidebarCollapsed"></app-header>
 
 
     <!-- Page Content -->
-    <main class="mt-16 p-6">
+    <main class="mt-16 md:p-6">
       <router-outlet></router-outlet>
     </main>
   </div>
