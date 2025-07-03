@@ -135,32 +135,36 @@ export class AddDietPlanComponent {
   }
 
   saveDietPlan() {
+    if (this.planTitle == '') {
+      alert('Plan title empty.');
+    }
     // Load existing plans from localStorage
     const existingPlans = JSON.parse(localStorage.getItem('dietPlans') || '[]');
 
     // Calculate nutrition
     const nutrition = this.calculateTotalNutrition(this.daysForm);
+    if (this.planTitle) {
+      // Create new plan
+      const newPlan = {
+        id: this.generateRandomId(8),
+        title: this.planTitle,
+        days: this.totalDays,
+        mealsPerDay: this.daysForm,
+        nutrition: nutrition,
+      };
 
-    // Create new plan
-    const newPlan = {
-      id: this.generateRandomId(8),
-      title: this.planTitle,
-      days: this.totalDays,
-      mealsPerDay: this.daysForm,
-      nutrition: nutrition,
-    };
+      // Add to existing plans
+      existingPlans.push(newPlan);
 
-    // Add to existing plans
-    existingPlans.push(newPlan);
+      // Save updated plans back to localStorage
+      localStorage.setItem('dietPlans', JSON.stringify(existingPlans));
 
-    // Save updated plans back to localStorage
-    localStorage.setItem('dietPlans', JSON.stringify(existingPlans));
+      // Optionally update the component's array too
+      this.dietPlans = existingPlans;
 
-    // Optionally update the component's array too
-    this.dietPlans = existingPlans;
-
-    // Redirect
-    this.router.navigate(['dietPlan']);
+      // Redirect
+      this.router.navigate(['dietPlan']);
+    }
   }
 
   addMealItem(dayIndex: number, slot: string) {
@@ -173,6 +177,9 @@ export class AddDietPlanComponent {
       name: '',
       qty: '',
     });
+  }
+  goBack() {
+    this.router.navigate(['dietPlan']);
   }
 
   removeMealItem(dayIndex: number, slot: string, itemIndex: number) {
